@@ -1,0 +1,4 @@
+| User                        | System                                                                                     |
+|-----------------------------|--------------------------------------------------------------------------------------------|
+| 1. User requests to Log Out |                                                                                            |
+|                             | 2. System saves User data. List manager<br>is emptied and screen is returned to<br>Log In. |

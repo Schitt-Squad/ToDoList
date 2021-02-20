@@ -1,0 +1,6 @@
+| User                                    | System                                                                                                        |
+|-----------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| 1. User wants to log in.                |                                                                                                               |
+|                                         | 2. System asks for username and password.                                                                     |
+| 3. User supplies requested information. |                                                                                                               |
+|                                         | 4. System verifies user input. If accepted, allow user<br>   into application. If rejected, return to Step 2. |

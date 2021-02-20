@@ -1,0 +1,7 @@
+| User                                                         | System                                                                                                   |
+|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| 1.Inputs data relevant to desired task<br>and presses search |                                                                                                          |
+|                                                              | 2.iterate through tasks looking for keywords<br>based on User input and then displays <br>relevant tasks |
+| 3.Selects desired task                                       |                                                                                                          |
+|                                                              | 4.Opens task                                                                                             |
+| 5.Goes about doing what is desired<br>with said task         |                                                                                                          |

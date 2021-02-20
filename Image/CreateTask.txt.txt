@@ -1,0 +1,9 @@
+| User                                   | System                                                                                                                             |
+|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| 1.Requests to make a new task          |                                                                                                                                    |
+|                                        | 2.Asks for data User wants to input for task                                                                                       |
+| 3.Inputs data about task               |                                                                                                                                    |
+|                                        | 4.Stores data and tells user the task<br>was successfully created and displays the<br>info back to the user to confirm the details |
+| 5.Confirms that everything is all good |                                                                                                                                    |
+|                                        | 6.Asks if the User wants to create another <br>task                                                                                |
+| 7.Answers Yes or No                    |                                                                                                                                    |

@@ -1,0 +1,11 @@
+| Admin                                                           | System                                                                                            |
+|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+|                                                                 | 1.Displays User List                                                                              |
+| 2.Select a User                                                 |                                                                                                   |
+|                                                                 | 3.Display User info and have option<br>to change user password                                    |
+| 4.Clicks edit password                                          |                                                                                                   |
+|                                                                 | 5.Asks for new password                                                                           |
+| 6.Inputs data and hits confirm                                  |                                                                                                   |
+|                                                                 | 7.Temporarily stores data in case of<br>cancel                                                    |
+| 8.Either selects Save or Cancel<br>and is returned to user list |                                                                                                   |
+|                                                                 | 9.If Saved, the password is updated<br>on the user if not the temporary<br>password is thrown out |
