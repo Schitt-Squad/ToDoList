@@ -5,13 +5,22 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
         <option name="gradleHome" value="$PROJECT_DIR$/../../../../../../gradle-6.8" />
+=======
+        <option name="gradleHome" value="C:/Gradle/gradle-6.8" />
+        <option name="gradleJvm" value="11" />
+>>>>>>> 07a06f6ebc1ee01b8b26a0c5752b51ad0744a403
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
+<<<<<<< HEAD
+=======
+        <option name="useQualifiedModuleNames" value="true" />
+>>>>>>> 07a06f6ebc1ee01b8b26a0c5752b51ad0744a403
       </GradleProjectSettings>
     </option>
   </component>
