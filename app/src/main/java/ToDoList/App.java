@@ -4,11 +4,16 @@
 package ToDoList;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+
+    //I don't think there needs to be anything more here
+    private UserList UserL;
+
+    // we will need the main thread here
+    public static void main(String args){
+
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-    }
+    // we will need our log in and log out functions here
+
+    // our JavaFX code will also all be handled here
 }
