@@ -12,6 +12,17 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+
+    //Apply JavaFX gradle plugin
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+javafx {
+    //Specify version number
+    version = "11.0.4"
+    
+    //Add required modules
+    modules = [ 'javafx.controls' ]
 }
 
 repositories {
@@ -29,6 +40,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
+
+    // Allows Gson
+    compile 'com.google.code.gson:gson:2.8.6'
 }
 
 application {
