@@ -5,9 +5,6 @@ package ToDoList;
 
 public class App {
 
-    //I don't think there needs to be anything more here
-    private UserList UserL;
-
     // we will need the main thread here
     public static void main(String args){
 
