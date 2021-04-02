@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ToDoList.iml" filepath="$PROJECT_DIR$/.idea/modules/ToDoList.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ToDoList.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ToDoList.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ToDoList.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ToDoList.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ToDoList.app.test.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ToDoList.app.test.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/ToDoList.iml" filepath="$PROJECT_DIR$/.idea/ToDoList.iml" />
+>>>>>>> f446a9eccbfbe688eca8e939702891102c4c4eef
     </modules>
   </component>
 </project>
