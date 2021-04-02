@@ -3,14 +3,20 @@
  */
 package ToDoList;
 
-public class App {
+import java.io.IOException;
+
+public class App extends Application {
 
     // we will need the main thread here
-    public static void main(String args){
-
+    public static void main(String[] args){
+        Application.launch(args);
     }
 
-    // we will need our log in and log out functions here
+    @Override
+    public void start(Stage stage) throws IOException{
+        // we will need our log in and log out functions here
 
-    // our JavaFX code will also all be handled here
+        // our JavaFX code will also all be handled here
+    }
+
 }
