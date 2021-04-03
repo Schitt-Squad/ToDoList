@@ -72,12 +72,22 @@ public class User {
         return userName;
     }
 
-    //these just
+    //Returns false in both of these for if for whatever reason the wrong value gets passed in.
     public boolean changeUserName(String oldUser, String newUser){
-        return false;
+       if (oldUser == this.userName) {
+           this.userName= newUser;
+           return true;
+       }else {
+           return false;
+       }
     }
 
     public boolean changePassword(String oldPass, String newPass){
-        return false;
+        if (oldPass == this.password) {
+            this.password= newPass;
+            return true;
+        }else {
+            return false;
+        }
     }
 }
