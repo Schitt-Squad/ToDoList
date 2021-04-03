@@ -1,4 +1,4 @@
-package ToDoList;
+package To.Do.List;
 
 public class User {
     //the long list of things related to the User, will need an array list of Lists

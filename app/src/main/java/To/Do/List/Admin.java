@@ -1,4 +1,4 @@
-package ToDoList;
+package To.Do.List;
 
 public class Admin {
     //Instance Variables

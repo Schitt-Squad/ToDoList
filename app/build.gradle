@@ -47,5 +47,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'ToDoList.App'
+    mainClass = 'To.Do.List.App'
 }

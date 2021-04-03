@@ -1,4 +1,4 @@
-package ToDoList;
+package To.Do.List;
 
 import java.util.Calendar;
 

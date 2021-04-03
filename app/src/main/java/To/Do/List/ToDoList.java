@@ -1,4 +1,4 @@
-package ToDoList;
+package To.Do.List;
 
 public class ToDoList {
     //I don't think there needs to be anything more here
