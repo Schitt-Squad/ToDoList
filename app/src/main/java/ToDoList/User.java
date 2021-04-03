@@ -90,4 +90,8 @@ public class User {
             return false;
         }
     }
+
+    public void changePassword(String newPass){
+        this.password = newPass;
+    }
 }

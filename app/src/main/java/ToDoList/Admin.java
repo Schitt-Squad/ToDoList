@@ -4,6 +4,7 @@ public class Admin {
     //Instance Variables
     private String username;
     private String password;
+    private String userPassword;
     private static Admin singleton;
 
     //Default private constructor
@@ -39,8 +40,27 @@ public class Admin {
         this.password = password;
     }
 
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    //Allows Admin to change Admin password
+    public boolean changeAdminPassword(String oldPass, String newPass){
+        if(oldPass == this.password) {
+            this.password = newPass;
+            return true;
+        }
+        else
+            return false;
+    }
+
     //Allows Admin to change User password
-    public boolean ChangeUserPassword(String pass){
+    public boolean changeUserPassword(User user){
+        user.changePassword(userPassword);
         return true;
     }
 }

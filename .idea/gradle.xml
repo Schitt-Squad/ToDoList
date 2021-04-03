@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="GradleMigrationSettings" migrationVersion="1" />
+=======
+>>>>>>> 46b61cb7e0fed18224605e43b8a49c9c0773874a
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
         <option name="gradleHome" value="$PROJECT_DIR$/../../../../../../gradle-6.8" />
         <option name="gradleJvm" value="16" />
+=======
+        <option name="gradleHome" value="C:/Gradle/gradle-6.8" />
+        <option name="gradleJvm" value="11" />
+>>>>>>> 46b61cb7e0fed18224605e43b8a49c9c0773874a
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
+        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>
