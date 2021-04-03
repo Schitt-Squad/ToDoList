@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="GradleMigrationSettings" migrationVersion="1" />
-<<<<<<< HEAD
-=======
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$PROJECT_DIR$/../../../../../../gradle-6.8" />
-        <option name="gradleJvm" value="15" />
+        <option name="gradleJvm" value="16" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -18,5 +16,4 @@
       </GradleProjectSettings>
     </option>
   </component>
->>>>>>> e24c81ddff13b32d5705c8e13850dc24db633030
 </project>
