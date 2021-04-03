@@ -3,7 +3,7 @@ module app.main {
     requires javafx.graphics;
     requires com.google.gson;
 
-    exports ToDoList;
+    exports ToDoList to com.google.gson;
 
     opens ToDoList to com.google.gson;
 }

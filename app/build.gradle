@@ -19,7 +19,7 @@ plugins {
 
 javafx {
     //Specify version number
-    version = "11.0.4"
+    version = "16"
     
     //Add required modules
     modules = [ 'javafx.controls' ]
