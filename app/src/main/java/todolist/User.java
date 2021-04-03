@@ -2,9 +2,9 @@ package todolist;
 
 public class User {
     //the long list of things related to the User, will need an array list of Lists
-    private int ID;
-    private String firstName;
-    private String lastName;
+    private final int ID;
+    private  final String firstName;
+    private final String lastName;
     private String shortBio;
     private String emailAddress;
     private String password;
