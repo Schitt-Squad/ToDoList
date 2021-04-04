@@ -41,4 +41,8 @@ public class ToDoListSys {
     public void logout(User user){
         currentUser = null;
     }
+
+    public void newUser(String fName, String lName, String bio, String email, String pass, String user){
+        UserL.addUser(fName, lName, bio, email, pass, user);
+    }
 }
