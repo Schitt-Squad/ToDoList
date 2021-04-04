@@ -19,8 +19,18 @@ public class ToDoListSys {
     }
 
     //Review this method
-    public void login(User user){
-        currentUser = user;
+    public boolean login(String username,  String password) {
+        User user;
+        for (int u= 0; u<UserL.size(); u++){
+           user =  UserL.getUser(u);
+           if (user.getUserName()== username){
+               if (user.getPassword()== password){
+                   currentUser= user;
+                   return true;
+               }
+           }
+        }
+        return false;
     }
 
     //Review this method

@@ -26,8 +26,10 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        //login screen pops up first and this all the code for it
         primaryStage.setTitle("Login");
 
+        //laying out login screen
         Label loginLabel= new Label("LOGIN");
         loginLabel.setFont(Font.font(24));
 
@@ -47,10 +49,26 @@ public class App extends Application {
         loginTwo.setSpacing(50);
         loginOne.setAlignment(Pos.CENTER);
         loginTwo.setAlignment(Pos.CENTER);
-        Scene scene= new Scene(loginTwo, 500, 300);
+
+        //setting the scene and showing it.
+        Scene scene= new Scene(loginTwo, 500, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        loginButt.setOnMouseClicked(event -> {
+            if (sys.login(userText.getText(), passText.getText())){
+
+            } else {
+                Stage errLogStag= new Stage();
+                Label errLogLab= new Label("That User does not Exist or you had Typed something in wrong");
+                Scene errLogScen= new Scene(errLogLab, 350, 100);
+                errLogStag.setScene(errLogScen);
+                errLogStag.show();
+            }
+
+        });
 
     }
+
+
 }

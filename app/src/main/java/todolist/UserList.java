@@ -50,4 +50,10 @@ public class UserList {
         return false;
 
     }
+    public int size(){
+        return userList.size();
+    }
+    public User getUser(int index){
+        return userList.get(index);
+    }
 }
