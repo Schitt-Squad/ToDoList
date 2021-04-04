@@ -1,5 +1,9 @@
 package todolist;
 
+/**
+ * @author Braxton Grover, Christian Liechty
+ */
+
 public class ToDoListSys {
     //I don't think there needs to be anything more here
     private UserList UserL = UserList.instance();

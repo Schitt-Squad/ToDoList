@@ -22,16 +22,16 @@ plugins {
     //Code Coverage
     id 'jacoco'
 
-    //JavaDoc
-    //apply 'java'
 }
 
-/*
+//JavaDoc
+apply plugin: 'java'
+
 javadoc {
     source = sourceSets.main.allJava
     classpath = configurations.compile
 }
-
+/*
 jacoco {
     toolVersion = "0.8.6"
     reportsDirectory = file("$builddir/jacoco")

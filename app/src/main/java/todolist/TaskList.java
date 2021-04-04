@@ -1,5 +1,9 @@
 package todolist;
 
+/**
+ * @author Braxton Grover
+ */
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -26,6 +30,7 @@ public class TaskList implements Cloneable{
         Description= " ";
     }
 
+    //Getters and Setters
     public String getTitle() {
         return Title;
     }
