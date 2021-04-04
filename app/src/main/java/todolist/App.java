@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     private Stage userMain;
     private Stage userTask;
-    private Controller cont;
+    //private Controller cont;
 
     private ToDoListSys sys= ToDoListSys.instance();
     public static void main(String[] args) {

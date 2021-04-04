@@ -15,8 +15,55 @@ plugins {
 
     //for javafx
     id 'org.openjfx.javafxplugin' version '0.0.9'
+
+    //Code Licence
+    id "com.github.hierynomus.license" version "0.15.0"
+
+    //Code Coverage
+    id 'jacoco'
+
+    //JavaDoc
+    //apply 'java'
 }
 
+/*
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+    reportsDirectory = file("$builddir/jacoco")
+}
+
+test {
+    //report is generated after test is run
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    //test are required to run first
+    dependsOn test
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.85
+            }
+        }
+    }
+}
+*/
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()
@@ -41,6 +88,7 @@ application {
     // Define the main class for the application.
     mainClass = 'todolist.App'
 }
+
 javafx {
     version = "16"
     modules = [ 'javafx.controls' ]
