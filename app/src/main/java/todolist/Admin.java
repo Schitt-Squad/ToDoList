@@ -1,5 +1,9 @@
 package todolist;
 
+/**
+ * @author Christian Liechty
+ */
+
 public class Admin {
     //Instance Variables
     private String username;

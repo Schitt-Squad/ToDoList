@@ -1,5 +1,9 @@
 package todolist;
 
+/**
+ * @author Braxton Grover
+ */
+
 import java.util.ArrayList;
 
 public class UserList {

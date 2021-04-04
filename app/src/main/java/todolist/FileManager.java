@@ -1,5 +1,8 @@
-
 package todolist;
+
+/**
+ * @author Christian Liechty
+ */
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

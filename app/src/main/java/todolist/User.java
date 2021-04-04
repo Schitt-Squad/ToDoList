@@ -1,5 +1,9 @@
 package todolist;
 
+/**
+ * @author Braxton Grover
+ */
+
 public class User {
     //the long list of things related to the User, will need an array list of Lists
     private final int ID;
@@ -10,7 +14,16 @@ public class User {
     private String password;
     private String userName;
 
-    //set everything up by passing everything into the constructor
+    /**
+     *
+     * @param id     unique id number for a User
+     * @param fName  first name
+     * @param lName  last name
+     * @param bio    biography of user
+     * @param email  email address
+     * @param pass   password
+     * @param user   username
+     */
     public User(int id, String fName, String lName, String bio, String email, String pass, String user){
         ID=id;
         firstName=fName;
@@ -82,6 +95,12 @@ public class User {
         }
     }
 
+    /**
+     *
+     * @param oldPass this is the previous password of the User
+     * @param newPass this is the new password set by Admin
+     * @return will return true if old password is updated to new password
+     */
     public boolean changePassword(String oldPass, String newPass){
         if (oldPass == this.password) {
             this.password= newPass;

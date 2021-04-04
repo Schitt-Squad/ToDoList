@@ -50,8 +50,8 @@
     <orderEntry type="library" name="Gradle: org.apache.ant:ant:1.9.15" level="project" />
     <orderEntry type="library" name="Gradle: commons-cli:commons-cli:1.4" level="project" />
     <orderEntry type="library" name="Gradle: info.picocli:picocli:4.3.2" level="project" />
-    <orderEntry type="library" name="Gradle: com.thoughtworks.qdox:qdox:1.12.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.ant:ant-junit:1.9.15" level="project" />
+    <orderEntry type="library" name="Gradle: com.thoughtworks.qdox:qdox:1.12.1" level="project" />
     <orderEntry type="library" name="Gradle: jline:jline:2.14.6" level="project" />
     <orderEntry type="library" name="Gradle: org.junit.jupiter:junit-jupiter-api:5.4.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.ant:ant-antlr:1.9.15" level="project" />
