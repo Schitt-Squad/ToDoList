@@ -1,6 +1,9 @@
 package todolist;
 
 /**
+ * This class handles the ArrayList of Tasks that have been created by Users.
+ * Tasks can be added to the list, duplicated, or moved to different lists.
+ *
  * @author Braxton Grover
  */
 

@@ -45,6 +45,7 @@ public class User {
     }
 
     //these first 3 don't change so we need only to get them to display them
+    //getters and setters
     public int getID() {
         return ID;
     }
@@ -86,6 +87,13 @@ public class User {
     }
 
     //Returns false in both of these for if for whatever reason the wrong value gets passed in.
+
+    /**
+     *
+     * @param oldUser   current username
+     * @param newUser   new username
+     * @return          will return true if username change is successful
+     */
     public boolean changeUserName(String oldUser, String newUser){
         if (oldUser == this.userName) {
             this.userName= newUser;

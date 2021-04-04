@@ -1,6 +1,9 @@
 package todolist;
 
 /**
+ * This class handles the ArrayList of Users that comprise the application.
+ * Here, users can be added to the list, found in the list, or removed from the list.
+ *
  * @author Braxton Grover
  */
 
@@ -16,6 +19,8 @@ public class UserList {
     private UserList(){
         idCounter=1;
     }
+
+    //instantiate userlist as a singleton
     public static UserList instance(){
         if (singleton==null){
             singleton = new UserList();
@@ -24,6 +29,17 @@ public class UserList {
     }
 
     //add a new user, is a boolean for checking fields were properly filled out.
+
+    /**
+     *
+     * @param fName first name of user being added to list
+     * @param lName last name
+     * @param bio   description of user's life
+     * @param email email address
+     * @param pass  password
+     * @param user  username
+     * @return      will return true if user is successfully added to UserList
+     */
     public boolean addUser(String fName, String lName, String bio, String email, String pass, String user){
         if(bio != null && email != null) {
             User newUser = new User(idCounter, fName, lName, bio, email, pass, user);
@@ -44,6 +60,13 @@ public class UserList {
     }
 
     //takes out a user and checks user ID for validity. May add in password as a check as well.
+
+    /**
+     *
+     * @param user      takes in user to be removed
+     * @param userID    user ID
+     * @return          will return true if user is successfully removed from UserList
+     */
     public boolean removeUser(User user, int userID){
         for (int i=0; i<userList.size(); i++) {
             if (userID == user.getID()) {
@@ -54,9 +77,20 @@ public class UserList {
         return false;
 
     }
+
+    /**
+     *
+     * @return size of the UserList
+     */
     public int size(){
         return userList.size();
     }
+
+    /**
+     *
+     * @param index index of user in UserList
+     * @return      user at specified index
+     */
     public User getUser(int index){
         return userList.get(index);
     }

@@ -12,6 +12,12 @@ public class Admin {
     private static Admin singleton;
 
     //Constructor
+
+    /**
+     *
+     * @param username Username for Admin
+     * @param password Password for Admin
+     */
     private Admin(String username, String password) {
         this.username = username;
         this.password = password;
