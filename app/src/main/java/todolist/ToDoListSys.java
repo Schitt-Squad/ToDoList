@@ -22,7 +22,12 @@ public class ToDoListSys {
         return singleton;
     }
 
-    //Review this method
+    /**
+     *
+     * @param username  username of user attempting to login
+     * @param password  password of user attempting to login
+     * @return          will return true if credentials of user are verified
+     */
     public boolean login(String username,  String password) {
         User user;
         for (int u= 0; u<UserL.size(); u++){
