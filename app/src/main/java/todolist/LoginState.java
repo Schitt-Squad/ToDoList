@@ -20,7 +20,6 @@ public class LoginState extends UIState {
 
         //initializing system
         super();
-        mainStage.setTitle("Login");
         //laying out login screen
         Label loginLabel= new Label("LOGIN");
         loginLabel.setFont(Font.font(24));
@@ -40,7 +39,7 @@ public class LoginState extends UIState {
         Hyperlink newUser= new Hyperlink("Create New User");
 
         VBox loginOne= new VBox(userLabel, userText, passLabel, passText);
-        VBox loginTwo= new VBox(loginLabel, loginOne, loginButt);
+        VBox loginTwo= new VBox(loginLabel, loginOne, loginButt, newUser);
         //alignment for the VBoxes
         loginOne.setSpacing(10);
         loginTwo.setSpacing(50);
@@ -50,14 +49,15 @@ public class LoginState extends UIState {
         //setting the scene and showing it.
         currentScene= new Scene(loginTwo, 500, 400);
         mainStage= new Stage();
+        mainStage.setTitle("Login");
         mainStage.setScene(currentScene);
 
         //handles login
         loginButt.setOnMouseClicked(event -> {
             if (sys.login(userText.getText(), passText.getText()))
             {
-                UIState loggedIn;
-               App.currentState=loggedIn;
+                //UIState loggedIn;
+               //App.currentState=loggedIn;
 
             }else {
                 this.makePopUp();
@@ -66,7 +66,7 @@ public class LoginState extends UIState {
 
         //handles making a new user
         newUser.setOnMouseClicked(event -> {
-
+            this.createItem();
         });
 
     }
@@ -86,10 +86,12 @@ public class LoginState extends UIState {
 
         Label username= new Label("Username:");
         TextField userT= new TextField();
+        userT.setText(null);
         userT.setMaxSize(150, 60);
 
         Label password= new Label("Password:");
         TextField passT= new TextField();
+        passT.setText(null);
         passT.setMaxSize(150, 60);
 
         Label email= new Label("Email: ");
@@ -98,15 +100,17 @@ public class LoginState extends UIState {
 
         Label fName= new Label("First Name: ");
         TextField fNameT= new TextField();
+        fNameT.setText(null);
         fNameT.setMaxSize(150, 60);
 
         Label lName= new Label("Last Name: ");
         TextField lNameT= new TextField();
-        fNameT.setMaxSize(150, 60);
+        lNameT.setText(null);
+        lNameT.setMaxSize(150, 60);
 
-        Label bio= new Label("First Name: ");
+        Label bio= new Label("Biography: ");
         TextField bioT= new TextField();
-        fNameT.setMinSize(400, 300);
+        bioT.setMinSize(400, 300);
 
         Button cancel= new Button("Cancel");
         Button create= new Button("Create");
