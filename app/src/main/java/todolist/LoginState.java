@@ -2,14 +2,15 @@ package todolist;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+/**
+ * @author Braxton Grover, Christian Liechty
+ */
 
 public class LoginState extends UIState {
 
@@ -38,8 +39,10 @@ public class LoginState extends UIState {
 
         Hyperlink newUser= new Hyperlink("Create New User");
 
+        Hyperlink adminLogin = new Hyperlink("Admin Login");
+
         VBox loginOne= new VBox(userLabel, userText, passLabel, passText);
-        VBox loginTwo= new VBox(loginLabel, loginOne, loginButt, newUser);
+        VBox loginTwo= new VBox(loginLabel, loginOne, loginButt, newUser, adminLogin);
         //alignment for the VBoxes
         loginOne.setSpacing(10);
         loginTwo.setSpacing(50);
@@ -47,7 +50,7 @@ public class LoginState extends UIState {
         loginTwo.setAlignment(Pos.CENTER);
 
         //setting the scene and showing it.
-        currentScene= new Scene(loginTwo, 500, 400);
+        currentScene= new Scene(loginTwo, 500, 500);
         mainStage= new Stage();
         mainStage.setTitle("Login");
         mainStage.setScene(currentScene);
@@ -67,6 +70,11 @@ public class LoginState extends UIState {
         //handles making a new user
         newUser.setOnMouseClicked(event -> {
             this.createItem();
+        });
+
+        //Admin View
+        adminLogin.setOnMouseClicked(event -> {
+            this.createAdmin();
         });
 
     }
@@ -156,5 +164,53 @@ public class LoginState extends UIState {
         errLogStag.show();
     }
 
+    //transition to Admin Login
+    public void createAdmin() {
+        //laying out login screen
+        Label loginLabel= new Label("ADMIN LOGIN");
+        loginLabel.setFont(Font.font(24));
+
+        Label userLabel= new Label("Username:");
+        userLabel.setFont(Font.font(16));
+
+        Label passLabel= new Label("Password:");
+        passLabel.setFont(Font.font(16));
+
+        TextField userText= new TextField();
+        TextField passText= new TextField();
+
+        Tooltip tip = new Tooltip("Username: admin \nPassword: password");
+
+        Button loginButt= new Button();
+        loginButt.setText("Login");
+        loginButt.setTooltip(tip);
+
+        //Button Action
+        //handles login
+        loginButt.setOnMouseClicked(event -> {
+            if (userText.getText().equals("admin") && passText.getText().equals("password"))
+            {
+                mainStage.close();
+                App.currentState = AdminState.instance();
+
+            }else {
+                this.makePopUp();
+            }
+        });
+
+        VBox loginOne= new VBox(userLabel, userText, passLabel, passText);
+        VBox loginTwo= new VBox(loginLabel, loginOne, loginButt);
+        //alignment for the VBoxes
+        loginOne.setSpacing(10);
+        loginTwo.setSpacing(50);
+        loginOne.setAlignment(Pos.CENTER);
+        loginTwo.setAlignment(Pos.CENTER);
+
+        currentScene = new Scene(loginTwo, 500, 500);
+        mainStage= new Stage();
+        mainStage.setTitle("Admin Login");
+        mainStage.setScene(currentScene);
+        mainStage.show();
+    }
 
 }
