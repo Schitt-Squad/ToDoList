@@ -56,8 +56,8 @@ public class LoginState extends UIState {
         loginButt.setOnMouseClicked(event -> {
             if (sys.login(userText.getText(), passText.getText()))
             {
-                //UIState loggedIn;
-               //App.currentState=loggedIn;
+                mainStage.close();
+               App.currentState=MainUserState.instance();
 
             }else {
                 this.makePopUp();

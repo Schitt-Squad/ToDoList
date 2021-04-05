@@ -87,4 +87,6 @@ public class TaskList implements Cloneable{
     public void removeTask(Task task){
         taskList.remove(task);
     }
+    public int size() {return taskList.size();}
+    public Task getTask(int index) {return taskList.get(index);}
 }

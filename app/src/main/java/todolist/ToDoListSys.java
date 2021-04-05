@@ -42,6 +42,10 @@ public class ToDoListSys {
         return false;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     //Review this method
     public void logout(User user){
         currentUser = null;

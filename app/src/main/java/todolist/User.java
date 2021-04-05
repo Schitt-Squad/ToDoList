@@ -1,5 +1,7 @@
 package todolist;
 
+import java.util.ArrayList;
+
 /**
  * @author Braxton Grover
  */
@@ -13,6 +15,7 @@ public class User {
     private String emailAddress;
     private String password;
     private String userName;
+    private ArrayList<TaskList> lists= new ArrayList<TaskList>();
 
     /**
      *
@@ -117,8 +120,21 @@ public class User {
             return false;
         }
     }
+    public void newList(String title, String description){
+        if (description == null && title == null){
+            lists.add(new TaskList());
+        }else if (description == null){
+            lists.add(new TaskList(title));
+        } else {lists.add(new TaskList(title, description));}
 
-    public void changePassword(String newPass){
-        this.password = newPass;
     }
+
+    public void removeList(TaskList list){ lists.remove(list); }
+
+    public void changePassword(String newPass){ this.password = newPass; }
+
+    public int getListArraySize(){ return lists.size(); }
+
+    public TaskList getList(int index){ return lists.get(index); }
+
 }
