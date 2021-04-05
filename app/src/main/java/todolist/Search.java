@@ -1,5 +1,9 @@
 package todolist;
 
+/**
+ * @author Christian Liechty
+ */
+
 public class Search {
     //Instance Variables
     private String searchItem;

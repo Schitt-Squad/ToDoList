@@ -1,9 +1,17 @@
 package todolist;
 
+/**
+ * This class handles the ArrayList of Tasks that have been created by Users.
+ * Tasks can be added to the list, duplicated, or moved to different lists.
+ *
+ * @author Braxton Grover
+ */
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class TaskList implements Cloneable{
+public class TaskList implements Cloneable, Serializable {
     //local variables, need to add an array list of tasks
     private String Title;
     private String Description;
@@ -26,6 +34,7 @@ public class TaskList implements Cloneable{
         Description= " ";
     }
 
+    //Getters and Setters
     public String getTitle() {
         return Title;
     }
@@ -79,4 +88,6 @@ public class TaskList implements Cloneable{
     public void removeTask(Task task){
         taskList.remove(task);
     }
+    public int size() {return taskList.size();}
+    public Task getTask(int index) {return taskList.get(index);}
 }

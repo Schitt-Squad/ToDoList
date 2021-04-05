@@ -1,5 +1,9 @@
 package todolist;
 
+/**
+ * @author Christian Liechty
+ */
+
 public class Admin {
     //Instance Variables
     private String username;
@@ -7,11 +11,14 @@ public class Admin {
     private String userPassword;
     private static Admin singleton;
 
-    //Default private constructor
-    private Admin() {}
-
     //Constructor
-    public Admin(String username, String password) {
+
+    /**
+     *
+     * @param username Username for Admin
+     * @param password Password for Admin
+     */
+    private Admin(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -19,7 +26,7 @@ public class Admin {
     //Singleton Instance
     public static Admin instance() {
         if(singleton == null)
-            singleton = new Admin();
+            singleton = new Admin("admin", "password");
         return singleton;
     }
 

@@ -1,5 +1,11 @@
 package todolist;
 
+import java.util.ArrayList;
+
+/**
+ * @author Braxton Grover
+ */
+
 public class User {
     //the long list of things related to the User, will need an array list of Lists
     private final int ID;
@@ -9,8 +15,18 @@ public class User {
     private String emailAddress;
     private String password;
     private String userName;
+    private ArrayList<TaskList> lists= new ArrayList<TaskList>();
 
-    //set everything up by passing everything into the constructor
+    /**
+     *
+     * @param id     unique id number for a User
+     * @param fName  first name
+     * @param lName  last name
+     * @param bio    biography of user
+     * @param email  email address
+     * @param pass   password
+     * @param user   username
+     */
     public User(int id, String fName, String lName, String bio, String email, String pass, String user){
         ID=id;
         firstName=fName;
@@ -32,6 +48,7 @@ public class User {
     }
 
     //these first 3 don't change so we need only to get them to display them
+    //getters and setters
     public int getID() {
         return ID;
     }
@@ -73,6 +90,13 @@ public class User {
     }
 
     //Returns false in both of these for if for whatever reason the wrong value gets passed in.
+
+    /**
+     *
+     * @param oldUser   current username
+     * @param newUser   new username
+     * @return          will return true if username change is successful
+     */
     public boolean changeUserName(String oldUser, String newUser){
         if (oldUser == this.userName) {
             this.userName= newUser;
@@ -82,6 +106,12 @@ public class User {
         }
     }
 
+    /**
+     *
+     * @param oldPass this is the previous password of the User
+     * @param newPass this is the new password set by Admin
+     * @return will return true if old password is updated to new password
+     */
     public boolean changePassword(String oldPass, String newPass){
         if (oldPass == this.password) {
             this.password= newPass;
@@ -90,8 +120,21 @@ public class User {
             return false;
         }
     }
+    public void newList(String title, String description){
+        if (description == null && title == null){
+            lists.add(new TaskList());
+        }else if (description == null){
+            lists.add(new TaskList(title));
+        } else {lists.add(new TaskList(title, description));}
 
-    public void changePassword(String newPass){
-        this.password = newPass;
     }
+
+    public void removeList(TaskList list){ lists.remove(list); }
+
+    public void changePassword(String newPass){ this.password = newPass; }
+
+    public int getListArraySize(){ return lists.size(); }
+
+    public TaskList getList(int index){ return lists.get(index); }
+
 }

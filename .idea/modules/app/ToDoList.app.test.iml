@@ -15,15 +15,22 @@
     <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:16" level="project" />
     <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:win:16" level="project" />
     <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:16" level="project" />
+<<<<<<< HEAD:.idea/modules/app/ToDoList.app.test.iml
     <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:win:16" level="project" />
     <orderEntry type="library" name="Gradle: org.spockframework:spock-core:1.3-groovy-2.5" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.13" level="project" />
+=======
+    <orderEntry type="library" name="Gradle: org.spockframework:spock-core:1.0-groovy-2.4" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy-all:2.4.4" level="project" />
+>>>>>>> b5fa500676c354f691047da2ffc9c8bd3f3c3343:.idea/modules/app/app_test.iml
     <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
     <orderEntry type="library" name="Gradle: org.checkerframework:checker-qual:2.11.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.errorprone:error_prone_annotations:2.3.4" level="project" />
     <orderEntry type="library" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" level="project" />
+<<<<<<< HEAD:.idea/modules/app/ToDoList.app.test.iml
     <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy-test:2.5.13" level="project" />
     <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy-ant:2.5.13" level="project" />
     <orderEntry type="library" name="Gradle: org.codehaus.groovy:groovy-cli-commons:2.5.13" level="project" />
@@ -63,6 +70,9 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.jupiter:junit-jupiter-engine:5.4.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.testng:testng:6.13.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.beust:jcommander:1.72" level="project" />
+=======
+    <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
+>>>>>>> b5fa500676c354f691047da2ffc9c8bd3f3c3343:.idea/modules/app/app_test.iml
   </component>
   <component name="TestModuleProperties" production-module="ToDoList.app.main" />
 </module>
