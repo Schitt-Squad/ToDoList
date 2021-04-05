@@ -94,4 +94,12 @@ public class UserList {
     public User getUser(int index){
         return userList.get(index);
     }
+    public ArrayList<User> getUserList(){
+        return userList;
+    }
+    public void setUserList(ArrayList<User> users){
+        userList= users;
+
+    }
+    public int getIdCounter() { return idCounter; }
 }

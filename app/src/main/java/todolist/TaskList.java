@@ -7,10 +7,11 @@ package todolist;
  * @author Braxton Grover
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class TaskList implements Cloneable{
+public class TaskList implements Cloneable, Serializable {
     //local variables, need to add an array list of tasks
     private String Title;
     private String Description;

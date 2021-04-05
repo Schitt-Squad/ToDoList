@@ -17,13 +17,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class FileManager {
-    //Instance Variables
-    ArrayList<UserList> userLists = new ArrayList<>();
 
     //Empty constructor
     public FileManager() {}
 
-    public void writeFile(String file, UserList[] users) throws IOException {
+    public void writeFile(String file, ArrayList<User> users) throws IOException {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
@@ -38,9 +36,9 @@ public class FileManager {
         writer.close();
     }
 
-    public ArrayList<UserList> readFile(String file) throws IOException {
+    public ArrayList<User> readFile(String file) throws IOException {
         Gson gson = new Gson();
-        ArrayList<UserList> other = new ArrayList<>();
+        ArrayList<User> other;
 
         //Instantiate Reader
         Reader reader = Files.newBufferedReader(Paths.get(file));

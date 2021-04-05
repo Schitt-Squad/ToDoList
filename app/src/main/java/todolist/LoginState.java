@@ -8,6 +8,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * @author Braxton Grover, Christian Liechty
  */
@@ -15,12 +17,16 @@ import javafx.stage.Stage;
 public class LoginState extends UIState {
 
     private static LoginState singleton;
+    private FileManager fileManager= new FileManager();
 
     //for using the System
     private LoginState() {
 
+
+
         //initializing system
         super();
+        sys.getUserList().add(new User(1, "Generic", "Guy", "Test", "Tester"));
         //laying out login screen
         Label loginLabel= new Label("LOGIN");
         loginLabel.setFont(Font.font(24));
@@ -139,7 +145,16 @@ public class LoginState extends UIState {
         create.setOnMouseClicked(event -> {
             if (fNameT.getText() != null && lNameT.getText() != null && userT.getText() != null && passT.getText() != null) {
                 sys.newUser(fNameT.getText(), lNameT.getText(), bioT.getText(), mailT.getText(), passT.getText(), userT.getText());
+                /*
+                try {
+                    fileManager.writeFile("C:\\Users\\Braxton\\Desktop\\Git School repos\\Semester Project CS2263\\ToDoList\\User.json", sys.getUserList());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                for saving to the file
+                 */
                 newUserStage.close();
+
             } else{
                 this.makePopUp();
             }
