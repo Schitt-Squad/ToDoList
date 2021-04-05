@@ -164,9 +164,15 @@ public class LoginState extends UIState {
         errLogStag.show();
     }
 
+    /**
+     * After the "Admin Login" hyperlink is clicked by the User, the scene will transition to Admin login.
+     * If "admin" and "password" are entered the Admin is able to login and change the passwords of Users.
+     * 
+     * @author Christian Liechty
+     */
     //transition to Admin Login
     public void createAdmin() {
-        //laying out login screen
+        //Labels
         Label loginLabel= new Label("ADMIN LOGIN");
         loginLabel.setFont(Font.font(24));
 
@@ -176,11 +182,14 @@ public class LoginState extends UIState {
         Label passLabel= new Label("Password:");
         passLabel.setFont(Font.font(16));
 
+        //Textfields
         TextField userText= new TextField();
-        TextField passText= new TextField();
+        PasswordField passText= new PasswordField();
 
+        //Tooltip
         Tooltip tip = new Tooltip("Username: admin \nPassword: password");
 
+        //Button
         Button loginButt= new Button();
         loginButt.setText("Login");
         loginButt.setTooltip(tip);
@@ -198,6 +207,7 @@ public class LoginState extends UIState {
             }
         });
 
+        //Layout
         VBox loginOne= new VBox(userLabel, userText, passLabel, passText);
         VBox loginTwo= new VBox(loginLabel, loginOne, loginButt);
         //alignment for the VBoxes
