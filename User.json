@@ -1,0 +1,20 @@
+[
+  {
+    "ID": 1,
+    "firstName": "Generic",
+    "lastName": "Guy",
+    "password": "Test",
+    "userName": "Tester",
+    "lists": []
+  },
+  {
+    "ID": 1,
+    "firstName": "foobar",
+    "lastName": "foobar",
+    "shortBio": "foobar",
+    "emailAddress": "foobar",
+    "password": "foobar",
+    "userName": "foobar",
+    "lists": []
+  }
+]

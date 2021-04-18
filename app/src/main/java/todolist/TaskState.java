@@ -56,14 +56,20 @@ public class TaskState {
         priorityChoice.getItems().add("5");
 
         //Buttons
-        //Buttons
         Button create = new Button("Create Task");
         Button cancel = new Button("Cancel");
 
         //Button Actions
-        //cancels new list creation
+        /**
+         * When the "Cancel" button is clicked the stage will close
+         * and a new task will not be created
+         */
         cancel.setOnMouseClicked(event -> {
             taskStage.close();
+        });
+
+        create.setOnMouseClicked(event -> {
+
         });
 
 

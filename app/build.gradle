@@ -82,14 +82,6 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-engine:5.5.2"
     testRuntime "org.junit.platform:junit-platform-runner:1.5.2"
 
-
-    //Spock
-    //testCompile(
-    //        'junit:junit:4.12',
-    //        'org.codehaus.groovy:groovy-all:2.4.4',
-    //        'org.spockframework:spock-core:1.0-groovy-2.4'
-    //)
-
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
 

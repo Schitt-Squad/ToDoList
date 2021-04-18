@@ -17,14 +17,14 @@ public class ToDoListSys {
 
     //making it a singleton
     private ToDoListSys() {
-        /*
+
         try {
-            UserL.setUserList(fileManager.readFile("C:\\Users\\Braxton\\Desktop\\Git School repos\\Semester Project CS2263\\ToDoList\\User.json"));
+            UserL.setUserList(fileManager.readFile("./User.json"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for pulling from the file upon start up
-         */
+        //for pulling from the file upon start up
+
 
     }
 

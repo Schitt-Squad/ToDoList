@@ -7,9 +7,10 @@ package todolist;
  * @author Braxton Grover
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserList {
+public class UserList implements Serializable {
     //local variables needs to add admin
     private ArrayList<User> userList= new ArrayList<User>();
     private static UserList singleton;

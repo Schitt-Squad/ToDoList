@@ -44,7 +44,7 @@ public class AdminState extends UIState{
         //Populate ListView with Users
         for (int i = 0; i < UserList.instance().size(); i++){
             //Observable List
-            ObservableList<User> content = FXCollections.observableArrayList(UserList.instance().getUser(i));
+            ObservableList<String> content = FXCollections.observableArrayList(UserList.instance().getUser(i).toString());
             users.setItems(content);
         }
 

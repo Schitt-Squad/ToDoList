@@ -1,12 +1,13 @@
 package todolist;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author Braxton Grover
  */
 
-public class User {
+public class User implements Serializable {
     //the long list of things related to the User, will need an array list of Lists
     private final int ID;
     private  final String firstName;
@@ -137,4 +138,8 @@ public class User {
 
     public TaskList getList(int index){ return lists.get(index); }
 
+    @Override
+    public String toString() {
+        return String.format("%s %s", firstName, lastName);
+    }
 }

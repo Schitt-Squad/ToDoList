@@ -145,14 +145,14 @@ public class LoginState extends UIState {
         create.setOnMouseClicked(event -> {
             if (fNameT.getText() != null && lNameT.getText() != null && userT.getText() != null && passT.getText() != null) {
                 sys.newUser(fNameT.getText(), lNameT.getText(), bioT.getText(), mailT.getText(), passT.getText(), userT.getText());
-                /*
+
                 try {
-                    fileManager.writeFile("C:\\Users\\Braxton\\Desktop\\Git School repos\\Semester Project CS2263\\ToDoList\\User.json", sys.getUserList());
+                    fileManager.writeFile("./User.json", sys.getUserList());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                for saving to the file
-                 */
+                //for saving to the file
+
                 newUserStage.close();
 
             } else{
