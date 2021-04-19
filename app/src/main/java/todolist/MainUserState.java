@@ -9,13 +9,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
 public class MainUserState extends UIState{
 
     private static MainUserState singleton;
+    private FileManager fileMang;
 
     public static MainUserState instance(){
         if (singleton== null){
@@ -48,8 +52,8 @@ public class MainUserState extends UIState{
         Label lists= new Label("Lists");
         ListView<String> listsV= new ListView<String>();
         ObservableList<String> listNames= FXCollections.observableArrayList();
-        for (int i=0; i<sys.getCurrentUser().getListArraySize(); i++){
-           listNames.add(sys.getCurrentUser().getList(i).getTitle());
+        for (int i=0; i<sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++){
+           listNames.add(sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle());
         }
         listsV.setItems(listNames);
         listsV.setMaxSize(450, 800);
@@ -63,9 +67,9 @@ public class MainUserState extends UIState{
         taskDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
         TaskList currentList= null;
-        for (int i=0; i<sys.getCurrentUser().getListArraySize(); i++){
-            if (sys.getCurrentUser().getList(i).getTitle() == listsV.getOnMouseClicked().toString()){
-                currentList= sys.getCurrentUser().getList(i);
+        for (int i=0; i<sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++){
+            if (sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle() == listsV.getOnMouseClicked().toString()){
+                currentList= sys.getUserList().get(sys.getCurrentUser()).getList(i);
             }
         }
 
@@ -85,11 +89,12 @@ public class MainUserState extends UIState{
         Button deleteTask= new Button("Delete Task");
         Button moveTask= new Button("Move Task");
         Button viewTask= new Button("ViewTask");
+        Button logOut= new Button("Logout");
 
         //all for proper alignment, the first HBox is meant for the search items
-        VBox vBoxOne= new VBox(lists, listsV);
+        VBox vBoxOne= new VBox(lists, listsV, logOut);
         vBoxOne.setAlignment(Pos.CENTER_LEFT);
-        vBoxOne.setSpacing(10);
+        vBoxOne.setSpacing(20);
         VBox vBoxTwo= new VBox(tasks, tasksV);
         vBoxTwo.setAlignment(Pos.CENTER_LEFT);
         vBoxTwo.setSpacing(10);
@@ -98,16 +103,103 @@ public class MainUserState extends UIState{
         vBoxThree.setSpacing(20);
         VBox vBoxFour= new VBox();
         HBox hBoxOne= new HBox(vBoxOne, vBoxTwo, vBoxThree);
-        hBoxOne.setSpacing(20);
+        hBoxOne.setSpacing(50);
         hBoxOne.setAlignment(Pos.BOTTOM_CENTER);
         HBox hBoxTwo= new HBox();
 
-        currentScene= new Scene(hBoxOne, 800, 1000);
+        currentScene= new Scene(hBoxOne, 800, 700);
         mainStage.setScene(currentScene);
         mainStage.show();
 
+        createList.setOnMouseClicked(event -> {
+            createItem();
+        });
+        logOut.setOnMouseClicked(event -> {
+
+            mainStage.close();
+            sys.logout();
+
+        });
     }
 
+    //going to use this for Lists and create a seperate method for tasks
+    @Override
+    public void createItem() {
+        Stage second= new Stage();
+
+        Label titleL= new Label("Title");
+        TextField title= new TextField();
+        title.setText(null);
+        title.setMinSize(100, 50);
+
+        Label descriptionL= new Label("Description");
+        TextField description= new TextField();
+        description.setText(null);
+        description.setMinSize(200, 300);
+        description.setAlignment(Pos.TOP_LEFT);
+
+        Button createList= new Button("Create List");
+        Button cancel= new Button("Cancel");
+
+        HBox buttons= new HBox(createList, cancel);
+        buttons.setAlignment(Pos.BOTTOM_RIGHT);
+        buttons.setSpacing(20);
+        VBox titleLayout= new VBox(titleL, title);
+        VBox descriptionLayout= new VBox(descriptionL, description);
+        VBox finalLayout= new VBox(titleLayout, descriptionLayout, buttons);
+        finalLayout.setAlignment(Pos.CENTER_RIGHT);
+        finalLayout.setSpacing(50);
+
+        second.setTitle("New List");
+        second.setScene(new Scene(finalLayout, 600, 600));
+        second.show();
+
+        createList.setOnMouseClicked(event -> {
+            if(title.getText() != null && description.getText() != null) {
+                sys.getUserList().get(sys.getCurrentUser()).newList(title.getText(), description.getText());
+                second.close();
+
+                makePopUp();
+            } else {
+                Stage third = new Stage();
+                Label nope= new Label("nope");
+                VBox err= new VBox(nope);
+                third.setScene(new Scene(err, 100, 100));
+                third.show();
+            }
+            try {
+                fileMang.writeUser("./ToDoList/User.json", sys.getUserList());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //for saving to the file
 
 
+
+        });
+
+        cancel.setOnMouseClicked(event -> {
+            second.close();
+
+        });
+
+
+
+    }
+
+    @Override
+    public void makePopUp(){
+        Stage second= new Stage();
+
+        Label success= new Label("Item Was Created Successfully");
+        Button oK= new Button("OK!");
+        VBox suc= new VBox(success, oK);
+        suc.setAlignment(Pos.CENTER);
+        suc.setSpacing(10);
+        second.setScene(new Scene(suc, 200, 100));
+        oK.setOnMouseClicked(event -> {
+            second.close();
+        });
+
+    }
 }

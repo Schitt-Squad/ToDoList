@@ -122,11 +122,7 @@ public class User implements Serializable {
         }
     }
     public void newList(String title, String description){
-        if (description == null && title == null){
-            lists.add(new TaskList());
-        }else if (description == null){
-            lists.add(new TaskList(title));
-        } else {lists.add(new TaskList(title, description));}
+        lists.add(new TaskList(title, description));
 
     }
 

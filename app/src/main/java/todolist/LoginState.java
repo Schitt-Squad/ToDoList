@@ -26,7 +26,6 @@ public class LoginState extends UIState {
 
         //initializing system
         super();
-        sys.getUserList().add(new User(1, "Generic", "Guy", "Test", "Tester"));
         //laying out login screen
         Label loginLabel= new Label("LOGIN");
         loginLabel.setFont(Font.font(24));
@@ -38,7 +37,7 @@ public class LoginState extends UIState {
         passLabel.setFont(Font.font(16));
 
         TextField userText= new TextField();
-        TextField passText= new TextField();
+        PasswordField passText= new PasswordField();
 
         Button loginButt= new Button();
         loginButt.setText("Login");
@@ -66,7 +65,8 @@ public class LoginState extends UIState {
             if (sys.login(userText.getText(), passText.getText()))
             {
                 mainStage.close();
-               App.currentState=MainUserState.instance();
+               Stage login= MainUserState.instance().getStage();
+               login.show();
 
             }else {
                 this.makePopUp();
@@ -125,6 +125,7 @@ public class LoginState extends UIState {
         Label bio= new Label("Biography: ");
         TextField bioT= new TextField();
         bioT.setMinSize(400, 300);
+        bioT.setAlignment(Pos.TOP_LEFT);
 
         Button cancel= new Button("Cancel");
         Button create= new Button("Create");
@@ -147,7 +148,7 @@ public class LoginState extends UIState {
                 sys.newUser(fNameT.getText(), lNameT.getText(), bioT.getText(), mailT.getText(), passT.getText(), userT.getText());
 
                 try {
-                    fileManager.writeFile("./User.json", sys.getUserList());
+                    fileManager.writeUser("./User.json", sys.getUserList());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

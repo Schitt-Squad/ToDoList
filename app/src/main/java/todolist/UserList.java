@@ -14,11 +14,10 @@ public class UserList implements Serializable {
     //local variables needs to add admin
     private ArrayList<User> userList= new ArrayList<User>();
     private static UserList singleton;
-    private int idCounter;
 
     //need to set ID Counter for giving users unique IDs
     private UserList(){
-        idCounter=1;
+
     }
 
     //instantiate userlist as a singleton
@@ -41,17 +40,16 @@ public class UserList implements Serializable {
      * @param user  username
      * @return      will return true if user is successfully added to UserList
      */
-    public boolean addUser(String fName, String lName, String bio, String email, String pass, String user){
+    public boolean addUser(int id, String fName, String lName, String bio, String email, String pass, String user){
         if(bio != null && email != null) {
-            User newUser = new User(idCounter, fName, lName, bio, email, pass, user);
+            User newUser = new User(id, fName, lName, bio, email, pass, user);
             userList.add(newUser);
-            idCounter++;
+
             return true;
 
         } else if(bio == null && email == null){
-            User newUser = new User(idCounter, fName, lName, pass, user);
+            User newUser = new User(id, fName, lName, pass, user);
             userList.add(newUser);
-            idCounter++;
             return true;
 
         } else {
@@ -102,5 +100,4 @@ public class UserList implements Serializable {
         userList= users;
 
     }
-    public int getIdCounter() { return idCounter; }
 }

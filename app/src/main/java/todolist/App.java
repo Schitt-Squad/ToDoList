@@ -12,12 +12,13 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-   public static UIState currentState;
+   public static UIState currentState= LoginState.instance();;
+   public static void main(String[] args){
+       launch();
+   }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        currentState= LoginState.instance();
         primaryStage = currentState.getStage();
         primaryStage.show();
 
