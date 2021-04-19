@@ -22,8 +22,6 @@ public class LoginState extends UIState {
     //for using the System
     private LoginState() {
 
-
-
         //initializing system
         super();
         sys.getUserList().add(new User(1, "Generic", "Guy", "Test", "Tester"));
@@ -124,7 +122,7 @@ public class LoginState extends UIState {
 
         Label bio= new Label("Biography: ");
         TextField bioT= new TextField();
-        bioT.setMinSize(400, 300);
+        bioT.setMinSize(300, 200);
 
         Button cancel= new Button("Cancel");
         Button create= new Button("Create");
@@ -135,7 +133,7 @@ public class LoginState extends UIState {
         VBox newUserBox= new VBox(fName, fNameT, lName, lNameT, username, userT, password, passT, email, mailT, bio, bioT, hBox);
         newUserBox.setAlignment(Pos.CENTER_LEFT);
         newUserBox.setSpacing(10);
-        Scene newUserScene= new Scene(newUserBox, 500, 700);
+        Scene newUserScene= new Scene(newUserBox, 500, 600);
 
         newUserStage.setTitle("Create New User");
         newUserStage.setScene(newUserScene);

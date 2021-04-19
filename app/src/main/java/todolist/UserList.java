@@ -29,9 +29,8 @@ public class UserList implements Serializable {
         return singleton;
     }
 
-    //add a new user, is a boolean for checking fields were properly filled out.
-
     /**
+     * Method for adding user
      *
      * @param fName first name of user being added to list
      * @param lName last name

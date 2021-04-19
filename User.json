@@ -3,18 +3,28 @@
     "ID": 1,
     "firstName": "Generic",
     "lastName": "Guy",
-    "password": "Test",
+    "password": "notfoo",
     "userName": "Tester",
     "lists": []
   },
   {
     "ID": 1,
-    "firstName": "foobar",
-    "lastName": "foobar",
-    "shortBio": "foobar",
-    "emailAddress": "foobar",
-    "password": "foobar",
-    "userName": "foobar",
+    "firstName": "foo",
+    "lastName": "foo",
+    "shortBio": "foo",
+    "emailAddress": "foo",
+    "password": "notfoo",
+    "userName": "foo",
+    "lists": []
+  },
+  {
+    "ID": 2,
+    "firstName": "bar",
+    "lastName": "bar",
+    "shortBio": "bar",
+    "emailAddress": "bar",
+    "password": "bar",
+    "userName": "bar",
     "lists": []
   }
 ]
