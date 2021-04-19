@@ -52,7 +52,7 @@ public class TaskList implements Cloneable, Serializable {
     }
 
     //make a new task and add it to the list
-    public void makeNewTask(int priority, String title, String desc, Calendar date, String label){
+    public void makeNewTask(int priority, String title, String desc, String date, String label){
         Task t;
         if (date== null){
             t= new Task(priority, title, desc, label);

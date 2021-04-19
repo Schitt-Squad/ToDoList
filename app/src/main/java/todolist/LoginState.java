@@ -22,8 +22,6 @@ public class LoginState extends UIState {
     //for using the System
     private LoginState() {
 
-
-
         //initializing system
         super();
         //laying out login screen
@@ -124,8 +122,12 @@ public class LoginState extends UIState {
 
         Label bio= new Label("Biography: ");
         TextField bioT= new TextField();
+<<<<<<< HEAD
         bioT.setMinSize(400, 300);
         bioT.setAlignment(Pos.TOP_LEFT);
+=======
+        bioT.setMinSize(300, 200);
+>>>>>>> 847dc6f68e5fa07d19aebf28570d7f7c0ac0bf43
 
         Button cancel= new Button("Cancel");
         Button create= new Button("Create");
@@ -136,7 +138,7 @@ public class LoginState extends UIState {
         VBox newUserBox= new VBox(fName, fNameT, lName, lNameT, username, userT, password, passT, email, mailT, bio, bioT, hBox);
         newUserBox.setAlignment(Pos.CENTER_LEFT);
         newUserBox.setSpacing(10);
-        Scene newUserScene= new Scene(newUserBox, 500, 700);
+        Scene newUserScene= new Scene(newUserBox, 500, 600);
 
         newUserStage.setTitle("Create New User");
         newUserStage.setScene(newUserScene);

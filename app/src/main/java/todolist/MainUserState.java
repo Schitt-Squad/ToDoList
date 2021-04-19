@@ -107,7 +107,11 @@ public class MainUserState extends UIState{
         hBoxOne.setAlignment(Pos.BOTTOM_CENTER);
         HBox hBoxTwo= new HBox();
 
+<<<<<<< HEAD
         currentScene= new Scene(hBoxOne, 800, 700);
+=======
+        currentScene= new Scene(hBoxOne, 800, 600);
+>>>>>>> 847dc6f68e5fa07d19aebf28570d7f7c0ac0bf43
         mainStage.setScene(currentScene);
         mainStage.show();
 

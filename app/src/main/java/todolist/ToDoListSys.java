@@ -19,21 +19,31 @@ public class ToDoListSys {
     private int idCounter;
 
     //making it a singleton
+<<<<<<< HEAD
     private ToDoListSys(String file) {
         ArrayList<User> temp;
 
         //pulls in User ArrayList to be dropped into the main UserList
+=======
+    private ToDoListSys() {
+        /*
+>>>>>>> 847dc6f68e5fa07d19aebf28570d7f7c0ac0bf43
         try {
             temp =fileManager.readUser(file);
             UserL.setUserList(temp);
         } catch (IOException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
 
 
         idCounter= UserL.size();
 
 
+=======
+        //for pulling from the file upon start up
+        */
+>>>>>>> 847dc6f68e5fa07d19aebf28570d7f7c0ac0bf43
 
     }
 

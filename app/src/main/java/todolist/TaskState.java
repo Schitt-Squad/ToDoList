@@ -1,14 +1,18 @@
 package todolist;
 
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
 /**
+ *
  * @author Christian Liechty
  */
-public class TaskState {
+public class TaskState extends UIState {
 
     private static TaskState singleton;
 
@@ -42,18 +46,15 @@ public class TaskState {
         //DatePicker
         DatePicker dueDate = new DatePicker();
 
-        //Use this for getting value from DatePicker
-        //LocalDate value = dueDate.getValue();
-
         //ChoiceBox for selecting priority of tasks
         ChoiceBox priorityChoice = new ChoiceBox();
 
         //Add options to ChoiceBox
-        priorityChoice.getItems().add("1");
-        priorityChoice.getItems().add("2");
-        priorityChoice.getItems().add("3");
-        priorityChoice.getItems().add("4");
-        priorityChoice.getItems().add("5");
+        priorityChoice.getItems().add(1);
+        priorityChoice.getItems().add(2);
+        priorityChoice.getItems().add(3);
+        priorityChoice.getItems().add(4);
+        priorityChoice.getItems().add(5);
 
         //Buttons
         Button create = new Button("Create Task");
@@ -68,9 +69,33 @@ public class TaskState {
             taskStage.close();
         });
 
+        //Need to add code to add task to a list
         create.setOnMouseClicked(event -> {
+            //Use this for getting value from DatePicker
+            LocalDate value = dueDate.getValue();
 
+            if (tTitle.getText() != null && tDescription.getText() != null){
+                new Task((Integer) priorityChoice.getValue(), tTitle.getText(),
+                        tDescription.getText(), value.toString(), tLabel.getText());
+            } else {
+                this.makePopUp();
+            }
         });
+
+        //Layout
+        VBox first = new VBox(title, tTitle, description, tDescription, labelDueDate, dueDate);
+        VBox second = new VBox(labelPriority, priorityChoice, label, tLabel);
+        HBox third = new HBox(create, cancel);
+        HBox fourth = new HBox(first, second);
+        VBox fifth = new VBox(fourth, third);
+
+        //Scene
+        Scene taskScene = new Scene(fifth, 500, 500);
+
+        //Set Stage
+        taskStage.setTitle("Create Task");
+        taskStage.setScene(taskScene);
+        taskStage.show();
 
 
     }

@@ -11,7 +11,7 @@ public class Task implements Cloneable {
     private int priority;
     private String title;
     private String description;
-    private Calendar dueDate;
+    private String dueDate;
     private String label;
     private boolean completed;
 
@@ -25,7 +25,7 @@ public class Task implements Cloneable {
      * @param dueDate       Date task must be completed by
      * @param label         Allows User to put a label on a task
      */
-    public Task(int priority, String title, String description, Calendar dueDate, String label) {
+    public Task(int priority, String title, String description, String dueDate, String label) {
         this.priority = priority;
         this.title = title;
         this.description = description;
@@ -38,7 +38,7 @@ public class Task implements Cloneable {
         this.priority = priority;
         this.title = title;
         this.description = description;
-        this.dueDate = defaultDueDate();
+        //this.dueDate = defaultDueDate();
         this.label = label;
         this.completed= false;
     }
@@ -73,11 +73,11 @@ public class Task implements Cloneable {
         this.description = description;
     }
 
-    public Calendar getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Calendar dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -95,11 +95,11 @@ public class Task implements Cloneable {
      *
      * @return Calendar object representing due date for a task
      */
-    public Calendar defaultDueDate(){
-        Calendar c= Calendar.getInstance();
-        c.add(Calendar.DATE, 7);
-        return c;
-    }
+    //public Calendar defaultDueDate(){
+    //    Calendar c= Calendar.getInstance();
+    //    c.add(Calendar.DATE, 7);
+    //    return c;
+    //}
 
     //for duplication
     public Task clone() throws CloneNotSupportedException{
