@@ -29,10 +29,6 @@ public class ToDoListSys {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-
-
             idCounter= UserL.size();
 
             //for pulling from the file upon start up

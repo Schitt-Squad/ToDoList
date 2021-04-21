@@ -1,49 +1,12 @@
 [
   {
     "ID": 1,
-<<<<<<< HEAD
-    "firstName": "Foo",
-    "lastName": "Bar",
+    "firstName": "Generic",
+    "lastName": "Guy",
     "shortBio": "stuff",
     "emailAddress": "stuff@stuff.com",
     "password": "tester",
     "userName": "test",
-    "lists": []
-  },
-  {
-    "ID": 2,
-    "firstName": "Generic",
-    "lastName": "Guy",
-    "shortBio": "",
-    "emailAddress": "",
-    "password": "face",
-    "userName": "generic",
-=======
-    "firstName": "Generic",
-    "lastName": "Guy",
-    "password": "notfoo",
-    "userName": "Tester",
-    "lists": []
-  },
-  {
-    "ID": 1,
-    "firstName": "foo",
-    "lastName": "foo",
-    "shortBio": "foo",
-    "emailAddress": "foo",
-    "password": "notfoo",
-    "userName": "foo",
-    "lists": []
-  },
-  {
-    "ID": 2,
-    "firstName": "bar",
-    "lastName": "bar",
-    "shortBio": "bar",
-    "emailAddress": "bar",
-    "password": "bar",
-    "userName": "bar",
->>>>>>> 847dc6f68e5fa07d19aebf28570d7f7c0ac0bf43
     "lists": []
   }
 ]
