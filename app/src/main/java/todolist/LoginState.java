@@ -122,12 +122,9 @@ public class LoginState extends UIState {
 
         Label bio= new Label("Biography: ");
         TextField bioT= new TextField();
-<<<<<<< HEAD
         bioT.setMinSize(400, 300);
         bioT.setAlignment(Pos.TOP_LEFT);
-=======
         bioT.setMinSize(300, 200);
->>>>>>> 847dc6f68e5fa07d19aebf28570d7f7c0ac0bf43
 
         Button cancel= new Button("Cancel");
         Button create= new Button("Create");
