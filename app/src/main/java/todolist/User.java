@@ -121,8 +121,8 @@ public class User implements Serializable {
             return false;
         }
     }
-    public void newList(String title, String description){
-        lists.add(new TaskList(title, description));
+    public void newList(TaskList list){
+            lists.add(list);
 
     }
 

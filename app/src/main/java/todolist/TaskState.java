@@ -76,7 +76,7 @@ public class TaskState extends UIState {
 
             if (tTitle.getText() != null && tDescription.getText() != null){
                 new Task((Integer) priorityChoice.getValue(), tTitle.getText(),
-                        tDescription.getText(), value.toString(), tLabel.getText());
+                        tDescription.getText(), value, tLabel.getText());
             } else {
                 this.makePopUp();
             }

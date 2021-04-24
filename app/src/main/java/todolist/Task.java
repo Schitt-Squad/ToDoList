@@ -4,14 +4,16 @@ package todolist;
  * @author Braxton Grover
  */
 
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Task implements Cloneable {
     //Instance Variables
     private int priority;
     private String title;
     private String description;
-    private String dueDate;
+    private LocalDate dueDate;
     private String label;
     private boolean completed;
 
@@ -25,7 +27,7 @@ public class Task implements Cloneable {
      * @param dueDate       Date task must be completed by
      * @param label         Allows User to put a label on a task
      */
-    public Task(int priority, String title, String description, String dueDate, String label) {
+    public Task(int priority, String title, String description, LocalDate dueDate, String label) {
         this.priority = priority;
         this.title = title;
         this.description = description;
@@ -41,11 +43,16 @@ public class Task implements Cloneable {
         //this.dueDate = defaultDueDate();
         this.label = label;
         this.completed= false;
+        dueDate = LocalDate.now().plusWeeks(1);
     }
 
     //Empty Constructor
     public Task(){
-
+        priority= 0;
+        title = "empty";
+        description= "nada";
+        label= "";
+        dueDate= LocalDate.now().plusWeeks(1);
     }
 
     //Define getters and setters
@@ -73,11 +80,11 @@ public class Task implements Cloneable {
         this.description = description;
     }
 
-    public String getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

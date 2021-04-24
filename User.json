@@ -7,6 +7,12 @@
     "emailAddress": "stuff@stuff.com",
     "password": "tester",
     "userName": "test",
-    "lists": []
+    "lists": [
+      {
+        "Title": "project",
+        "Description": "stuff",
+        "taskList": []
+      }
+    ]
   }
 ]
