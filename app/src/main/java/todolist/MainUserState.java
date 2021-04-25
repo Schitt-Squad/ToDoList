@@ -17,6 +17,10 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * @author Braxton Grover, Christian Liechty
+ */
+
 public class MainUserState extends UIState{
 
     private static MainUserState singleton;
@@ -62,11 +66,20 @@ public class MainUserState extends UIState{
 
         //tasks
         Label tasks = new Label("Tasks");
-        TableView<String> tasksV = new TableView<String>();
+
+        //Instantiate TableView
+        TableView tasksV = new TableView();
+        tasksV.setPlaceholder(new Label("No tasks to display"));
+
+        //Create Columns for TableView
         TableColumn<Task, String> taskTitle = new TableColumn<>("Title");
         taskTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+
         TableColumn<Task, LocalDate> taskDueDate = new TableColumn<>("Due Date");
         taskDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+
+        tasksV.getColumns().add(taskTitle);
+        tasksV.getColumns().add(taskDueDate);
 
 
             //buttons
@@ -113,6 +126,7 @@ public class MainUserState extends UIState{
 
             listsV.setOnMouseClicked(event -> {
                 tasksV.getItems().removeAll();
+                //tasksV.refresh();
                 TaskList currentList=null;
                 for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
                     if (sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle().equals(listsV.getSelectionModel().getSelectedItem()) ) {
@@ -123,8 +137,9 @@ public class MainUserState extends UIState{
 
                 if (currentList.size()>0) {
                     tasksV.getItems().removeAll();
+                    //tasksV.refresh();
                     for (int i = 0; i < currentList.size(); i++) {
-                        tasksV.getItems().add(currentList.getTask(i).getTitle());
+                        tasksV.getItems().add(currentList.getTask(i));
                     }
                 }
             });
@@ -272,6 +287,8 @@ public class MainUserState extends UIState{
                 } else {
                     this.makePopUp();
                 }
+
+                //for saving to the file
                 try {
                     fileMang.writeUser("./User.json", sys.getUserList());
                 } catch (IOException e) {

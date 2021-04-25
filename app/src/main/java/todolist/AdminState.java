@@ -13,6 +13,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * This is a concrete class of UIState. This class shows the Admin scene.
  * A listview displays Users. Admin can view Users, and change User passwords.
@@ -22,6 +24,7 @@ import javafx.stage.Stage;
 
 public class AdminState extends UIState{
 
+    private FileManager fileMang= new FileManager();
     private static AdminState singleton;
     //Listview
     ListView users = new ListView();
@@ -37,6 +40,8 @@ public class AdminState extends UIState{
     private AdminState() {
         //initializing the system
         super();
+
+        Stage adminStage = new Stage();
 
         //Label
         Label userlist = new Label("User List");
@@ -54,16 +59,22 @@ public class AdminState extends UIState{
 
         //Buttons
         Button changePassword = new Button("Change Password");
+        Button logOut = new Button("Logout");
 
         //Action Event for Changing Password
         changePassword.setOnMouseClicked(event -> {
             this.password();
         });
 
+        //Action Event for Logout
+        logOut.setOnMouseClicked(event -> {
+            adminStage.close();
+        });
+
 
         //Layout
         VBox left = new VBox(10, userlist, users);
-        VBox right = new VBox(10, changePassword);
+        VBox right = new VBox(10, changePassword, logOut);
         right.setAlignment(Pos.CENTER_RIGHT);
 
         HBox both = new HBox(50, left, right);
@@ -72,7 +83,6 @@ public class AdminState extends UIState{
         Scene adminScene = new Scene(both, 500, 500);
 
         //Stage
-        Stage adminStage = new Stage();
         adminStage.setTitle("Admin");
         adminStage.setScene(adminScene);
         adminStage.show();
@@ -101,8 +111,13 @@ public class AdminState extends UIState{
         changePass.setOnMouseClicked(event -> {
 
             for(int i = 0; i < UserList.instance().size(); i++){
-                ObservableList chosenUser = users.getSelectionModel().getSelectedItems();
-                UserList.instance().getUser(i).changePassword(pass.getText());
+                sys.getUserList().get(users.getSelectionModel().getSelectedIndex()).changePassword(pass.getText());
+            }
+
+            try {
+                fileMang.writeUser("./User.json", sys.getUserList());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             passwordStage.close();

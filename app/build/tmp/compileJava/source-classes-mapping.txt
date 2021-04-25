@@ -6,8 +6,8 @@ todolist/TaskList.java
  todolist.TaskList
 todolist/ToDoListSys.java
  todolist.ToDoListSys
-todolist/AdminState.java
- todolist.AdminState
+todolist/Task.java
+ todolist.Task
 todolist/TaskState.java
  todolist.TaskState
 todolist/Search.java
@@ -21,8 +21,8 @@ todolist/UserList.java
 todolist/FileManager.java
  todolist.FileManager
  todolist.FileManager$1
-todolist/Task.java
- todolist.Task
+todolist/AdminState.java
+ todolist.AdminState
 todolist/MainUserState.java
  todolist.MainUserState
 todolist/LoginState.java
