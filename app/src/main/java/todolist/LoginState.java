@@ -22,8 +22,10 @@ public class LoginState extends UIState {
     //for using the System
     private LoginState() {
 
+
         //initializing system
         super();
+        mainStage= new Stage();
         //laying out login screen
         Label loginLabel= new Label("LOGIN");
         loginLabel.setFont(Font.font(24));
@@ -54,7 +56,6 @@ public class LoginState extends UIState {
 
         //setting the scene and showing it.
         currentScene= new Scene(loginTwo, 500, 500);
-        mainStage= new Stage();
         mainStage.setTitle("Login");
         mainStage.setScene(currentScene);
 
@@ -63,8 +64,8 @@ public class LoginState extends UIState {
             if (sys.login(userText.getText(), passText.getText()))
             {
                 mainStage.close();
-               Stage login= MainUserState.instance().getStage();
-               login.show();
+               Stage mainUser= MainUserState.instance().getStage();
+               mainUser.show();
 
             }else {
                 this.makePopUp();
@@ -90,6 +91,9 @@ public class LoginState extends UIState {
         return singleton;
     }
 
+    public Scene getScene(){
+        return currentScene;
+    }
 
     //for creating a user
     @Override
