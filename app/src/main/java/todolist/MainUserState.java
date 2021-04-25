@@ -102,6 +102,10 @@ public class MainUserState extends UIState{
                 createItem();
             });
 
+            createTask.setOnMouseClicked(event -> {
+                newTask();
+            });
+
             logOut.setOnMouseClicked(event -> {
                 mainStage.close();
                 sys.logout();
@@ -210,6 +214,86 @@ public class MainUserState extends UIState{
             oK.setOnMouseClicked(event -> {
                 second.close();
             });
+        }
+
+        public void newTask() {
+            Stage taskStage = new Stage();
+
+            //Labels
+            Label title = new Label("Title");
+            Label description = new Label("Description");
+            Label labelDueDate = new Label("Due Date");
+            Label labelPriority = new Label("Priority");
+            Label label = new Label("Label");
+
+            //Textfields
+            TextField tTitle = new TextField();
+            TextField tDescription = new TextField();
+            tDescription.setMinSize(200, 100);
+            TextField tLabel = new TextField();
+
+            //DatePicker
+            DatePicker dueDate = new DatePicker();
+
+            //ChoiceBox for selecting priority of tasks
+            ChoiceBox priorityChoice = new ChoiceBox();
+
+            //Add options to ChoiceBox
+            priorityChoice.getItems().add(1);
+            priorityChoice.getItems().add(2);
+            priorityChoice.getItems().add(3);
+            priorityChoice.getItems().add(4);
+            priorityChoice.getItems().add(5);
+
+            //Buttons
+            Button create = new Button("Create Task");
+            Button cancel = new Button("Cancel");
+
+            //Button Actions
+            /**
+             * When the "Cancel" button is clicked the stage will close
+             * and a new task will not be created
+             */
+            cancel.setOnMouseClicked(event -> {
+                taskStage.close();
+            });
+
+            //Need to add code to add task to a list
+            create.setOnMouseClicked(event -> {
+                //Use this for getting value from DatePicker
+                LocalDate value = dueDate.getValue();
+
+                if (tTitle.getText() != null && tDescription.getText() != null){
+                    Task newTask = new Task((Integer) priorityChoice.getValue(), tTitle.getText(),
+                            tDescription.getText(), value, tLabel.getText());
+
+                    sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).addTask(newTask);
+
+                } else {
+                    this.makePopUp();
+                }
+                try {
+                    fileMang.writeUser("./User.json", sys.getUserList());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                taskStage.close();
+            });
+
+            //Layout
+            VBox first = new VBox(10, title, tTitle, description, tDescription, labelDueDate, dueDate);
+            VBox second = new VBox(10, labelPriority, priorityChoice, label, tLabel);
+            HBox third = new HBox(10, create, cancel);
+            HBox fourth = new HBox(10, first, second);
+            VBox fifth = new VBox(10, fourth, third);
+
+            //Scene
+            Scene taskScene = new Scene(fifth, 500, 500);
+
+            //Set Stage
+            taskStage.setTitle("Create Task");
+            taskStage.setScene(taskScene);
+            taskStage.show();
         }
 
 
