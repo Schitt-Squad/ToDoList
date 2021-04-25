@@ -1,5 +1,6 @@
 package todolist;
 
+import com.sun.jdi.connect.Connector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -22,6 +23,7 @@ public class MainUserState extends UIState{
     private static MainUserState singleton;
     private FileManager fileMang= new FileManager();
     ListView<String> listsV = new ListView<String>();
+    public static Stage mainUser= new Stage();
 
     public static MainUserState instance(){
         if (singleton== null){
@@ -34,8 +36,6 @@ public class MainUserState extends UIState{
         //keeps access to the Main system
         super();
 
-        //initializes new stage
-        mainStage = new Stage();
 
         //search items
         /* did not have time to implement
@@ -69,6 +69,7 @@ public class MainUserState extends UIState{
         taskDueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 
 
+
             //buttons
             Button createList = new Button("Create List");
             Button deleteList = new Button("Delete List");
@@ -95,8 +96,8 @@ public class MainUserState extends UIState{
             HBox hBoxTwo = new HBox();
 
             currentScene = new Scene(hBoxOne, 800, 700);
-            mainStage.setScene(currentScene);
-            mainStage.show();
+            mainUser.setScene(currentScene);
+            mainUser.show();
 
             createList.setOnMouseClicked(event -> {
                 createItem();
@@ -107,8 +108,9 @@ public class MainUserState extends UIState{
             });
 
             logOut.setOnMouseClicked(event -> {
-                mainStage.close();
+                mainUser.close();
                 sys.logout();
+                mainStage.show();
             });
 
             listsV.setOnMouseClicked(event -> {
@@ -128,6 +130,10 @@ public class MainUserState extends UIState{
                     }
                 }
             });
+        }
+        @Override
+        public Stage getStage(){
+        return mainUser;
         }
 
         //going to use this for Lists and create a seperate method for tasks

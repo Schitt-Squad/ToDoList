@@ -8,7 +8,6 @@ import javafx.stage.*;
 
 public abstract class UIState {
 
-    //The only thing that the
     protected static Stage mainStage;
     protected static Scene currentScene;
     protected ToDoListSys sys;
