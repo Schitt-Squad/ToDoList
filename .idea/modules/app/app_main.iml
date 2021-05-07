@@ -11,10 +11,10 @@
     <orderEntry type="library" name="Gradle: com.google.guava:guava:29.0-jre" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:win:16" level="project" />
-    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:16" level="project" />
     <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:win:16" level="project" />
-    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:16" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:16" level="project" />
     <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:win:16" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:16" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
