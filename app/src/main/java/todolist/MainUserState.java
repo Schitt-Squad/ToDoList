@@ -128,10 +128,17 @@ public class MainUserState extends UIState{
 
             //Button action for Delete Task
             deleteTask.setOnMouseClicked(event -> {
-                TableView.TableViewSelectionModel selectionModel = tasksV.getSelectionModel();
-                
-                sys.getUserList().get(sys.getCurrentUser()).getList(tasksV.getSelectionModel().getSelectedIndex()).removeTask((Task) selectionModel.getSelectedItem());
+                Task remove = sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).getTask(tasksV.getSelectionModel().getSelectedIndex());
 
+                sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).removeTask(remove);
+
+                tasksV.getItems().clear();
+
+                try {
+                    fileMang.writeUser("./User.json", sys.getUserList());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
 
             //Button action for Logout
@@ -147,19 +154,19 @@ public class MainUserState extends UIState{
         listsV.setOnMouseClicked(event -> {
 
                 tasksV.getItems().clear();
-                TaskList currentList=null;
-                for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
-                    if (sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle().equals(listsV.getSelectionModel().getSelectedItem()) ) {
-                        currentList = sys.getUserList().get(sys.getCurrentUser()).getList(i);
-                    }
+            TaskList currentList=null;
+            for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
+                if (sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle().equals(listsV.getSelectionModel().getSelectedItem()) ) {
+                    currentList = sys.getUserList().get(sys.getCurrentUser()).getList(i);
                 }
+            }
 
 
-                if (currentList.size()>0) {
-                    for (int i = 0; i < currentList.size(); i++) {
-                        tasksV.getItems().add(currentList.getTask(i));
-                    }
+            if (currentList.size()>0) {
+                for (int i = 0; i < currentList.size(); i++) {
+                    tasksV.getItems().add(currentList.getTask(i));
                 }
+            }
 
             });
         }

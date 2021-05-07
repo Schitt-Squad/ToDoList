@@ -23,38 +23,13 @@
             },
             "label": "f",
             "completed": false
-          },
-          {
-            "priority": 3,
-            "title": "notlaundry",
-            "description": "hojld",
-            "dueDate": {
-              "year": 2021,
-              "month": 4,
-              "day": 29
-            },
-            "label": "fadsf",
-            "completed": false
           }
         ]
       },
       {
         "Title": "hello",
         "Description": "helllooooo",
-        "taskList": [
-          {
-            "priority": 4,
-            "title": "Dishes",
-            "description": "Do the dishes.",
-            "dueDate": {
-              "year": 2021,
-              "month": 4,
-              "day": 25
-            },
-            "label": "Chores",
-            "completed": false
-          }
-        ]
+        "taskList": []
       }
     ]
   }
