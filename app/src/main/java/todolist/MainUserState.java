@@ -122,10 +122,9 @@ public class MainUserState extends UIState{
 
                 //tasksV.getItems().clear();
                 Save();
-                RefreshLists();
+                RefreshTasks();
             });
 
-<<<<<<< HEAD
             //Button action for Delete List
             deleteList.setOnMouseClicked(event -> {
                 TaskList delete = sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
@@ -138,9 +137,9 @@ public class MainUserState extends UIState{
             //Button action for viewing task
             viewTask.setOnMouseClicked(event -> {
                 view();
-=======
+
                 Save();
->>>>>>> 50797ee4ab3e5dad2e7b18067aaa4001c8f918e2
+
             });
 
             //Button action for Logout
@@ -174,22 +173,9 @@ public class MainUserState extends UIState{
          * When a list is clicked, the TableView of Tasks is cleared, and then populated with the tasks in that list
          */
         listsV.setOnMouseClicked(event -> {
-            tasksV.getItems().clear();
-            TaskList currentList=null;
-            for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
-                if (sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle().equals(listsV.getSelectionModel().getSelectedItem()) ) {
-                    currentList = sys.getUserList().get(sys.getCurrentUser()).getList(i);
-                }
-            }
-
-
-            if (currentList.size()>0) {
-                for (int i = 0; i < currentList.size(); i++) {
-                    tasksV.getItems().add(currentList.getTask(i));
-                }
-            }
-
+            RefreshTasks();
             });
+
          renameList.setOnMouseClicked(event -> {
              RenameList();
          });
@@ -340,6 +326,7 @@ public class MainUserState extends UIState{
                     this.makePopUp();
                 }
                 Save();
+                RefreshTasks();
 
                 taskStage.close();
             });
@@ -396,6 +383,18 @@ public class MainUserState extends UIState{
                 listNames.add(sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle());
             }
             listsV.setItems(listNames);
+        }
+
+        public void RefreshTasks(){
+            tasksV.getItems().clear();
+            TaskList currentList=sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
+
+            if (currentList.size()>0) {
+                for (int i = 0; i < currentList.size(); i++) {
+                    tasksV.getItems().add(currentList.getTask(i));
+                }
+            }
+
         }
         //saves to the file
         public void Save(){

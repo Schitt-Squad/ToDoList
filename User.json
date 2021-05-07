@@ -13,18 +13,6 @@
         "Description": "stuff",
         "taskList": [
           {
-            "priority": 3,
-            "title": "laundry",
-            "description": "do",
-            "dueDate": {
-              "year": 2021,
-              "month": 4,
-              "day": 29
-            },
-            "label": "f",
-            "completed": false
-          },
-          {
             "priority": 4,
             "title": "Homework",
             "description": "Do the homework plox",
@@ -35,15 +23,38 @@
             },
             "label": "HW",
             "completed": false
+          },
+          {
+            "priority": 2,
+            "title": "heyo",
+            "description": "heyo",
+            "dueDate": {
+              "year": 2021,
+              "month": 5,
+              "day": 12
+            },
+            "label": "heyo",
+            "completed": false
           }
         ]
-<<<<<<< HEAD
-=======
       },
       {
         "Title": "hello",
         "Description": "helllooooo",
-        "taskList": []
+        "taskList": [
+          {
+            "priority": 4,
+            "title": "by",
+            "description": "by",
+            "dueDate": {
+              "year": 2021,
+              "month": 5,
+              "day": 11
+            },
+            "label": "by",
+            "completed": false
+          }
+        ]
       },
       {
         "Title": "stuff",
@@ -62,7 +73,6 @@
             "completed": false
           }
         ]
->>>>>>> 50797ee4ab3e5dad2e7b18067aaa4001c8f918e2
       }
     ]
   }
