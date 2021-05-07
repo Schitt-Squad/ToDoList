@@ -110,7 +110,9 @@ public class Task implements Cloneable {
 
     //for duplication
     public Task clone() throws CloneNotSupportedException{
-        return (Task)super.clone();
+        Task clone= (Task)super.clone();
+        clone.setTitle(clone.getTitle()+" (Copy)");
+        return clone;
     }
 
     public void markComplete(){completed=true;}

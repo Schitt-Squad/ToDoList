@@ -21,20 +21,18 @@ public class TaskList implements Cloneable, Serializable {
 
     //for both being set
     public TaskList(String title, String desc){
-        Title=title;
-        Description=desc;
+        if (title != null && desc !=null) {
+            Title = title;
+            Description = desc;
+        }else if (desc == null && title != null) {
+            Title=title;
+            Description=" ";
+        }else {
+            Title= "Blank";
+            Description= " ";
+        }
     }
 
-    //when they just want a title to the list
-    public TaskList(String title){
-        Title=title;
-    }
-
-    //creates a blank list
-    public TaskList(){
-        Title= " ";
-        Description= " ";
-    }
 
     //Getters and Setters
     public String getTitle() {
@@ -53,15 +51,9 @@ public class TaskList implements Cloneable, Serializable {
         Description = description;
     }
 
-    //make a new task and add it to the list
-    public void makeNewTask(int priority, String title, String desc, LocalDate date, String label){
-        Task t;
-        if (date== null){
-            t= new Task(priority, title, desc, label);
-        } else {
-            t= new Task(priority, title, desc, date, label);
-        }
-        taskList.add(t);
+    //need this method for cloning
+    public void cloneTask(Task task){
+        taskList.add(task);
     }
 
     //moves a task from one list to another
@@ -72,7 +64,9 @@ public class TaskList implements Cloneable, Serializable {
 
     //for duplication
     public TaskList clone() throws CloneNotSupportedException {
-        return (TaskList)super.clone();
+        TaskList clone= (TaskList)super.clone();
+        clone.setTitle(clone.getTitle()+ " (Copy)");
+        return clone;
     }
 
     //for moving tasks

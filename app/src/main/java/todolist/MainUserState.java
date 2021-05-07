@@ -74,8 +74,11 @@ public class MainUserState extends UIState{
             //Buttons
             Button createList = new Button("Create List");
             Button deleteList = new Button("Delete List");
+            Button duplicateList= new Button("Duplicate List");
+            Button renameList= new Button("Rename List");
             Button createTask = new Button("Create Task");
             Button deleteTask = new Button("Delete Task");
+            Button duplicateTask= new Button("Duplicate Task");
             Button moveTask = new Button("Move Task");
             Button viewTask = new Button("ViewTask");
             Button logOut = new Button("Logout");
@@ -84,19 +87,20 @@ public class MainUserState extends UIState{
             VBox vBoxOne = new VBox(lists, listsV, logOut);
             vBoxOne.setAlignment(Pos.CENTER_LEFT);
             vBoxOne.setSpacing(20);
+            VBox vBoxListButtons= new VBox(createList, deleteList, renameList, duplicateList);
+            vBoxListButtons.setAlignment(Pos.CENTER);
+            vBoxListButtons.setSpacing(20);
             VBox vBoxTwo = new VBox(tasks, tasksV);
             vBoxTwo.setAlignment(Pos.CENTER_LEFT);
             vBoxTwo.setSpacing(10);
-            VBox vBoxThree = new VBox(createList, deleteList, createTask, deleteTask, moveTask, viewTask);
-            vBoxThree.setAlignment(Pos.CENTER);
-            vBoxThree.setSpacing(20);
-            VBox vBoxFour = new VBox();
-            HBox hBoxOne = new HBox(vBoxOne, vBoxTwo, vBoxThree);
+            VBox vBoxTasksButtons = new VBox(createTask, deleteTask, duplicateTask, moveTask, viewTask);
+            vBoxTasksButtons.setAlignment(Pos.CENTER);
+            vBoxTasksButtons.setSpacing(20);
+            HBox hBoxOne = new HBox(vBoxOne, vBoxListButtons, vBoxTwo, vBoxTasksButtons);
             hBoxOne.setSpacing(50);
             hBoxOne.setAlignment(Pos.BOTTOM_CENTER);
-            HBox hBoxTwo = new HBox();
 
-            currentScene = new Scene(hBoxOne, 700, 600);
+            currentScene = new Scene(hBoxOne, 850, 600);
             mainUser.setScene(currentScene);
             mainUser.show();
 
@@ -121,6 +125,7 @@ public class MainUserState extends UIState{
                 RefreshLists();
             });
 
+<<<<<<< HEAD
             //Button action for Delete List
             deleteList.setOnMouseClicked(event -> {
                 TaskList delete = sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
@@ -133,6 +138,9 @@ public class MainUserState extends UIState{
             //Button action for viewing task
             viewTask.setOnMouseClicked(event -> {
                 view();
+=======
+                Save();
+>>>>>>> 50797ee4ab3e5dad2e7b18067aaa4001c8f918e2
             });
 
             //Button action for Logout
@@ -140,6 +148,26 @@ public class MainUserState extends UIState{
                 mainUser.close();
                 sys.logout();
                 mainStage.show();
+            });
+
+            duplicateList.setOnMouseClicked(event -> {
+                TaskList orig= sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
+                try {
+                    sys.getUserList().get(sys.getCurrentUser()).newList(orig.clone());
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+                RefreshLists();
+                Save();
+            });
+
+            duplicateTask.setOnMouseClicked(event -> {
+                Task orig = sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).getTask(tasksV.getSelectionModel().getSelectedIndex());
+                try {
+                    sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).cloneTask(orig.clone());
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
             });
 
         /**
@@ -162,6 +190,9 @@ public class MainUserState extends UIState{
             }
 
             });
+         renameList.setOnMouseClicked(event -> {
+             RenameList();
+         });
         }
         @Override
         public Stage getStage(){
@@ -327,6 +358,37 @@ public class MainUserState extends UIState{
             taskStage.setTitle("Create Task");
             taskStage.setScene(taskScene);
             taskStage.show();
+        }
+        private void RenameList(){
+        Stage rename= new Stage();
+        rename.setTitle("New Name");
+
+        Label newName= new Label("New Name");
+        TextArea newTitle= new TextArea();
+        Button cancel= new Button("Cancel");
+        Button save = new Button("Save");
+
+        HBox buttons= new HBox(save, cancel);
+        buttons.setAlignment(Pos.BOTTOM_RIGHT);
+        buttons.setSpacing(30);
+        VBox layout= new VBox(newName, newTitle, buttons);
+        layout.setAlignment(Pos.CENTER_LEFT);
+        layout.setSpacing(20);
+
+        Scene scene= new Scene(layout, 300, 200);
+        rename.setScene(scene);
+        rename.show();
+
+        cancel.setOnMouseClicked(event -> {
+            rename.close();
+        });
+        save.setOnMouseClicked(event -> {
+            sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).setTitle(newTitle.getText());
+            RefreshLists();
+            Save();
+            rename.close();
+        });
+
         }
         public void RefreshLists(){
             ObservableList<String> listNames = FXCollections.observableArrayList();
