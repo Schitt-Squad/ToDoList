@@ -45,26 +45,9 @@ public class MainUserState extends UIState{
         super();
 
 
-        //search items
-        /* did not have time to implement
-        TextField searchT= new TextField();
-        searchT.setMaxSize(150, 60);
-        Button search= new Button("Search");
-        RadioButton allS= new RadioButton("All");
-        RadioButton listsS= new RadioButton("Lists");
-        RadioButton tasksS= new RadioButton("Tasks");
-        RadioButton labelS= new RadioButton("Labels");
-        RadioButton archived= new RadioButton("Archived");
-         */
-
-
         //Lists
         Label lists = new Label("Lists");
-        ObservableList<String> listNames = FXCollections.observableArrayList();
-        for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
-            listNames.add(sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle());
-        }
-        listsV.setItems(listNames);
+        RefreshLists();
         listsV.setMaxSize(450, 800);
         listsV.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
@@ -224,17 +207,8 @@ public class MainUserState extends UIState{
                     third.show();
                 }
 
-                //saves to the file
-                try {
-                    fileMang.writeUser("./User.json", sys.getUserList());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                ObservableList<String> listNames = FXCollections.observableArrayList();
-                for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
-                    listNames.add(sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle());
-                }
-                listsV.setItems(listNames);
+                Save();
+                RefreshLists();
 
 
 
@@ -347,6 +321,22 @@ public class MainUserState extends UIState{
             taskStage.setTitle("Create Task");
             taskStage.setScene(taskScene);
             taskStage.show();
+        }
+        public void RefreshLists(){
+            ObservableList<String> listNames = FXCollections.observableArrayList();
+            for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
+                listNames.add(sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle());
+            }
+            listsV.setItems(listNames);
+        }
+        //saves to the file
+        public void Save(){
+            try {
+                fileMang.writeUser("./User.json", sys.getUserList());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
 
