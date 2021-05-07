@@ -70,14 +70,6 @@ public class TaskList implements Cloneable, Serializable {
         this.removeTask(task);
     }
 
-    //Allows user to duplicate a task
-    //Return type and parameters need to be changed
-    public void duplicateTask(Task orig) throws CloneNotSupportedException{
-        Task newTask= orig.clone();
-        newTask.setLabel(newTask.getTitle() + " Copy");
-        taskList.add(newTask);
-    }
-
     //for duplication
     public TaskList clone() throws CloneNotSupportedException {
         return (TaskList)super.clone();
