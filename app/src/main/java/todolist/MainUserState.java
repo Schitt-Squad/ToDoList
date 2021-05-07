@@ -31,6 +31,7 @@ public class MainUserState extends UIState{
     private static MainUserState singleton;
     private FileManager fileMang= new FileManager();
     ListView<String> listsV = new ListView<String>();
+    TableView tasksV = new TableView();
     public static Stage mainUser= new Stage();
 
     public static MainUserState instance(){
@@ -55,7 +56,7 @@ public class MainUserState extends UIState{
         Label tasks = new Label("Tasks");
 
         //Instantiate TableView
-        TableView tasksV = new TableView();
+        //TableView tasksV = new TableView();
         tasksV.setPlaceholder(new Label("No tasks to display"));
 
         //Create Columns for TableView
@@ -115,13 +116,23 @@ public class MainUserState extends UIState{
 
                 sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).removeTask(remove);
 
-                tasksV.getItems().clear();
+                //tasksV.getItems().clear();
+                Save();
+                RefreshLists();
+            });
 
-                try {
-                    fileMang.writeUser("./User.json", sys.getUserList());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            //Button action for Delete List
+            deleteList.setOnMouseClicked(event -> {
+                TaskList delete = sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
+                sys.getUserList().get(sys.getCurrentUser()).removeList(delete);
+
+                Save();
+                RefreshLists();
+            });
+
+            //Button action for viewing task
+            viewTask.setOnMouseClicked(event -> {
+                view();
             });
 
             //Button action for Logout
@@ -135,8 +146,7 @@ public class MainUserState extends UIState{
          * When a list is clicked, the TableView of Tasks is cleared, and then populated with the tasks in that list
          */
         listsV.setOnMouseClicked(event -> {
-
-                tasksV.getItems().clear();
+            tasksV.getItems().clear();
             TaskList currentList=null;
             for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
                 if (sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle().equals(listsV.getSelectionModel().getSelectedItem()) ) {
@@ -253,8 +263,9 @@ public class MainUserState extends UIState{
 
             //Textfields
             TextField tTitle = new TextField();
-            TextField tDescription = new TextField();
-            tDescription.setMinSize(200, 100);
+            TextArea tDescription = new TextArea();
+            tDescription.setWrapText(true);
+            tDescription.setMaxSize(200, 200);
             TextField tLabel = new TextField();
 
             //DatePicker
@@ -283,7 +294,7 @@ public class MainUserState extends UIState{
                 taskStage.close();
             });
 
-            //Need to add code to add task to a list
+            //Button action for creating Task
             create.setOnMouseClicked(event -> {
                 //Use this for getting value from DatePicker
                 LocalDate value = dueDate.getValue();
@@ -297,13 +308,8 @@ public class MainUserState extends UIState{
                 } else {
                     this.makePopUp();
                 }
+                Save();
 
-                //for saving to the file
-                try {
-                    fileMang.writeUser("./User.json", sys.getUserList());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 taskStage.close();
             });
 
@@ -336,6 +342,93 @@ public class MainUserState extends UIState{
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+        }
+
+        //This method creates a scene from which the User can view and edit tasks that have already been created.
+        public void view(){
+            Stage viewStage = new Stage();
+
+            Task viewed = sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).getTask(tasksV.getSelectionModel().getSelectedIndex());
+
+            //Labels
+            Label title = new Label("Title");
+            Label description = new Label("Description");
+            Label labelDueDate = new Label("Due Date");
+            Label labelPriority = new Label("Priority");
+            Label label = new Label("Label");
+
+            //Textfields
+            TextField tTitle = new TextField(viewed.getTitle());
+            TextArea tDescription = new TextArea(viewed.getDescription());
+            tDescription.setWrapText(true);
+            tDescription.setMaxSize(200, 200);
+            TextField tLabel = new TextField(viewed.getLabel());
+
+            //DatePicker
+            DatePicker dueDate = new DatePicker(viewed.getDueDate());
+
+            //ChoiceBox for selecting priority of tasks
+            ChoiceBox priorityChoice = new ChoiceBox();
+            priorityChoice.setValue(viewed.getPriority());
+
+            //Add options to ChoiceBox
+            priorityChoice.getItems().add(1);
+            priorityChoice.getItems().add(2);
+            priorityChoice.getItems().add(3);
+            priorityChoice.getItems().add(4);
+            priorityChoice.getItems().add(5);
+
+
+            //Buttons
+            Button change = new Button("Change Task");
+            Button cancel = new Button("Cancel");
+
+            //Button Actions
+            /**
+             * When the "Cancel" button is clicked the stage will close
+             * and a new task will not be created
+             */
+            cancel.setOnMouseClicked(event -> {
+                viewStage.close();
+            });
+
+            //Button action for changing Task
+            change.setOnMouseClicked(event -> {
+                //Use this for getting value from DatePicker
+                LocalDate value = dueDate.getValue();
+
+                if (tTitle.getText() != null && tDescription.getText() != null){
+                    Task newTask = new Task((Integer) priorityChoice.getValue(), tTitle.getText(),
+                            tDescription.getText(), value, tLabel.getText());
+
+                    sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).removeTask(viewed);
+
+                    sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).addTask(newTask);
+
+                } else {
+                    this.makePopUp();
+                }
+                Save();
+                RefreshLists();
+
+                viewStage.close();
+            });
+
+            //Layout
+            VBox first = new VBox(10, title, tTitle, description, tDescription, labelDueDate, dueDate);
+            VBox second = new VBox(10, labelPriority, priorityChoice, label, tLabel);
+            HBox third = new HBox(10, change, cancel);
+            HBox fourth = new HBox(10, first, second);
+            VBox fifth = new VBox(10, fourth, third);
+
+            //Scene
+            Scene taskScene = new Scene(fifth, 500, 500);
+
+            //Set Stage
+            viewStage.setTitle("View Task");
+            viewStage.setScene(taskScene);
+            viewStage.show();
 
         }
 
