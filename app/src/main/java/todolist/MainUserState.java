@@ -20,6 +20,10 @@ import java.util.List;
 
 /**
  * @author Braxton Grover, Christian Liechty
+ *
+ * This class is sets the stage for where the User is able to create, delete, or change Tasks and Lists.
+ * Tasks and Lists for the user signed in are displayed here.
+ * New lists and tasks are saved to a file, so the User can revisit their ToDoLists.
  */
 
 public class MainUserState extends UIState{
@@ -54,7 +58,7 @@ public class MainUserState extends UIState{
          */
 
 
-        //lists
+        //Lists
         Label lists = new Label("Lists");
         ObservableList<String> listNames = FXCollections.observableArrayList();
         for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
@@ -64,7 +68,7 @@ public class MainUserState extends UIState{
         listsV.setMaxSize(450, 800);
         listsV.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        //tasks
+        //Task Label
         Label tasks = new Label("Tasks");
 
         //Instantiate TableView
@@ -83,7 +87,7 @@ public class MainUserState extends UIState{
 
 
 
-            //buttons
+            //Buttons
             Button createList = new Button("Create List");
             Button deleteList = new Button("Delete List");
             Button createTask = new Button("Create Task");
@@ -108,27 +112,41 @@ public class MainUserState extends UIState{
             hBoxOne.setAlignment(Pos.BOTTOM_CENTER);
             HBox hBoxTwo = new HBox();
 
-            currentScene = new Scene(hBoxOne, 800, 700);
+            currentScene = new Scene(hBoxOne, 700, 600);
             mainUser.setScene(currentScene);
             mainUser.show();
 
+            //Button action for Create List
             createList.setOnMouseClicked(event -> {
                 createItem();
             });
 
+            //Button action for Create Task
             createTask.setOnMouseClicked(event -> {
                 newTask();
             });
 
+            //Button action for Delete Task
+            deleteTask.setOnMouseClicked(event -> {
+                TableView.TableViewSelectionModel selectionModel = tasksV.getSelectionModel();
+                
+                sys.getUserList().get(sys.getCurrentUser()).getList(tasksV.getSelectionModel().getSelectedIndex()).removeTask((Task) selectionModel.getSelectedItem());
+
+            });
+
+            //Button action for Logout
             logOut.setOnMouseClicked(event -> {
                 mainUser.close();
                 sys.logout();
                 mainStage.show();
             });
 
-            listsV.setOnMouseClicked(event -> {
-                tasksV.getItems().removeAll();
-                //tasksV.refresh();
+        /**
+         * When a list is clicked, the TableView of Tasks is cleared, and then populated with the tasks in that list
+         */
+        listsV.setOnMouseClicked(event -> {
+
+                tasksV.getItems().clear();
                 TaskList currentList=null;
                 for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
                     if (sys.getUserList().get(sys.getCurrentUser()).getList(i).getTitle().equals(listsV.getSelectionModel().getSelectedItem()) ) {
@@ -138,12 +156,11 @@ public class MainUserState extends UIState{
 
 
                 if (currentList.size()>0) {
-                    tasksV.getItems().removeAll();
-                    //tasksV.refresh();
                     for (int i = 0; i < currentList.size(); i++) {
                         tasksV.getItems().add(currentList.getTask(i));
                     }
                 }
+
             });
         }
         @Override
@@ -151,7 +168,8 @@ public class MainUserState extends UIState{
         return mainUser;
         }
 
-        //going to use this for Lists and create a seperate method for tasks
+        //going to use this for Lists and create a separate method for tasks
+
         @Override
         public void createItem () {
             Stage second = new Stage();
@@ -237,7 +255,12 @@ public class MainUserState extends UIState{
             });
         }
 
-        public void newTask() {
+    /**
+     * @author Christian Liechty
+     * When "Create Task" button is clicked, a new window is displayed where the User can create a new Task.
+     * The task is then saved to a file.
+     */
+    public void newTask() {
             Stage taskStage = new Stage();
 
             //Labels
