@@ -76,6 +76,7 @@ public class MainUserState extends UIState{
             Button deleteList = new Button("Delete List");
             Button duplicateList= new Button("Duplicate List");
             Button renameList= new Button("Rename List");
+            Button editList= new Button("View/Edit Description");
             Button createTask = new Button("Create Task");
             Button deleteTask = new Button("Delete Task");
             Button duplicateTask= new Button("Duplicate Task");
@@ -87,7 +88,7 @@ public class MainUserState extends UIState{
             VBox vBoxOne = new VBox(lists, listsV, logOut);
             vBoxOne.setAlignment(Pos.CENTER_LEFT);
             vBoxOne.setSpacing(20);
-            VBox vBoxListButtons= new VBox(createList, deleteList, renameList, duplicateList);
+            VBox vBoxListButtons= new VBox(createList, deleteList, renameList, editList, duplicateList);
             vBoxListButtons.setAlignment(Pos.CENTER);
             vBoxListButtons.setSpacing(20);
             VBox vBoxTwo = new VBox(tasks, tasksV);
@@ -112,6 +113,10 @@ public class MainUserState extends UIState{
             //Button action for Create Task
             createTask.setOnMouseClicked(event -> {
                 newTask();
+            });
+
+            editList.setOnMouseClicked(event -> {
+                EditList();
             });
 
             //Button action for Delete Task
@@ -346,12 +351,50 @@ public class MainUserState extends UIState{
             taskStage.setScene(taskScene);
             taskStage.show();
         }
+
+        private void EditList(){
+        Stage list= new Stage();
+        TaskList currentList= sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
+        Label title= new Label("Title: \n"+ currentList.getTitle());
+        Label desc= new Label("Description:");
+        TextArea descT= new TextArea();
+        descT.setText(currentList.getDescription());
+        descT.setWrapText(true);
+        descT.setMaxSize(200, 100);
+        Button save= new Button("Save");
+        Button cancel= new Button("Cancel");
+
+        VBox descL= new VBox(desc, descT);
+        descL.setAlignment(Pos.CENTER_LEFT);
+        HBox buttons= new HBox(save, cancel);
+        buttons.setAlignment(Pos.BOTTOM_RIGHT);
+        buttons.setSpacing(20);
+        VBox layout= new VBox(title, descL, buttons);
+        layout.setAlignment(Pos.CENTER_LEFT);
+        layout.setSpacing(30);
+        Scene scene = new Scene(layout, 300, 400);
+        list.setScene(scene);
+        list.show();
+
+        cancel.setOnMouseClicked(event -> {list.close();});
+
+        save.setOnMouseClicked(event -> {
+            sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).setDescription(descT.getText());
+            Save();
+            RefreshLists();
+            list.close();
+        });
+
+        }
+
         private void RenameList(){
         Stage rename= new Stage();
         rename.setTitle("New Name");
 
         Label newName= new Label("New Name");
         TextArea newTitle= new TextArea();
+        newTitle.setWrapText(true);
+        newTitle.setMaxSize(100, 50);
         Button cancel= new Button("Cancel");
         Button save = new Button("Save");
 

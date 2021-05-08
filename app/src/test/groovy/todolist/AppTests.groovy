@@ -43,15 +43,6 @@ class AppTests extends Specification {
 
     }
 
-    def "Retrieve Blank Tasks"(){
-        setup:
-        TaskList tester= sys.getUserList().get(0).getList(0)
-        Task test=new Task();
-        tester.addTask(test)
-        expect:
-        tester.getTask(0).getTitle()== "empty"
-
-    }
 
 
 }
