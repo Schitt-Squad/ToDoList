@@ -85,6 +85,7 @@ public class MainUserState extends UIState{
             Button viewTask = new Button("ViewTask");
             Button logOut = new Button("Logout");
             Button userProfile = new Button("View User Profile");
+            Button mark = new Button("Mark Complete");
 
             completedTasks= new CheckBox("Show Completed Tasks");
 
@@ -98,7 +99,7 @@ public class MainUserState extends UIState{
             VBox vBoxTwo = new VBox(completedTasks, tasks, tasksV);
             vBoxTwo.setAlignment(Pos.CENTER_LEFT);
             vBoxTwo.setSpacing(10);
-            VBox vBoxTasksButtons = new VBox(createTask, deleteTask, duplicateTask, moveTask, viewTask);
+            VBox vBoxTasksButtons = new VBox(createTask, deleteTask, duplicateTask, mark, viewTask);
             vBoxTasksButtons.setAlignment(Pos.CENTER);
             vBoxTasksButtons.setSpacing(20);
             HBox hBoxOne = new HBox(vBoxOne, vBoxListButtons, vBoxTwo, vBoxTasksButtons);
@@ -114,6 +115,12 @@ public class MainUserState extends UIState{
             //Button action for Create List
             createList.setOnMouseClicked(event -> {
                 createItem();
+            });
+
+            mark.setOnMouseClicked(event -> {
+                sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).getTask(tasksV.getSelectionModel().getSelectedIndex()).markComplete();
+                Save();
+                RefreshTasks();
             });
 
             //Button action for Create Task

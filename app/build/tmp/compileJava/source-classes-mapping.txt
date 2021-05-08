@@ -1,53 +1,27 @@
-<<<<<<< HEAD
-todolist/UserList.java
- todolist.UserList
-todolist/User.java
- todolist.User
-=======
+todolist/ToDoListSys.java
+ todolist.ToDoListSys
+todolist/App.java
+ todolist.App
 todolist/UIState.java
  todolist.UIState
->>>>>>> bdd77402c432e11480536b693a84e8ba0ad92558
 todolist/FileManager.java
  todolist.FileManager
  todolist.FileManager$1
-todolist/Task.java
- todolist.Task
-todolist/ToDoListSys.java
- todolist.ToDoListSys
-<<<<<<< HEAD
-todolist/Admin.java
- todolist.Admin
-todolist/TaskList.java
- todolist.TaskList
-todolist/TaskState.java
- todolist.TaskState
-todolist/App.java
- todolist.App
-todolist/UIState.java
- todolist.UIState
 todolist/AdminState.java
  todolist.AdminState
-todolist/MainUserState.java
- todolist.MainUserState
-todolist/LoginState.java
- todolist.LoginState
-=======
-todolist/AdminState.java
- todolist.AdminState
-todolist/App.java
- todolist.App
-todolist/TaskState.java
- todolist.TaskState
 todolist/Admin.java
  todolist.Admin
-todolist/MainUserState.java
- todolist.MainUserState
+todolist/TaskState.java
+ todolist.TaskState
 todolist/TaskList.java
  todolist.TaskList
 todolist/User.java
  todolist.User
-todolist/LoginState.java
- todolist.LoginState
 todolist/UserList.java
  todolist.UserList
->>>>>>> bdd77402c432e11480536b693a84e8ba0ad92558
+todolist/Task.java
+ todolist.Task
+todolist/MainUserState.java
+ todolist.MainUserState
+todolist/LoginState.java
+ todolist.LoginState

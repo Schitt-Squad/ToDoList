@@ -10,20 +10,8 @@
     "lists": [
       {
         "Title": "project",
-        "Description": "stuff",
+        "Description": "whatever",
         "taskList": [
-          {
-            "priority": 4,
-            "title": "Homework",
-            "description": "Do the homework plox",
-            "dueDate": {
-              "year": 2021,
-              "month": 5,
-              "day": 7
-            },
-            "label": "HW",
-            "completed": false
-          },
           {
             "priority": 2,
             "title": "heyo",
@@ -34,6 +22,18 @@
               "day": 12
             },
             "label": "heyo",
+            "completed": true
+          },
+          {
+            "priority": 4,
+            "title": "Homework",
+            "description": "Do the homework.",
+            "dueDate": {
+              "year": 2021,
+              "month": 5,
+              "day": 7
+            },
+            "label": "HW",
             "completed": false
           }
         ]
@@ -52,25 +52,7 @@
               "day": 11
             },
             "label": "by",
-            "completed": false
-          }
-        ]
-      },
-      {
-        "Title": "stuff",
-        "Description": "stuff",
-        "taskList": [
-          {
-            "priority": 3,
-            "title": "laundry",
-            "description": "do",
-            "dueDate": {
-              "year": 2021,
-              "month": 4,
-              "day": 29
-            },
-            "label": "f",
-            "completed": false
+            "completed": true
           }
         ]
       }
