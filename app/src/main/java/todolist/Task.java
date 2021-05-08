@@ -28,31 +28,27 @@ public class Task implements Cloneable {
      * @param label         Allows User to put a label on a task
      */
     public Task(int priority, String title, String description, LocalDate dueDate, String label) {
-        this.priority = priority;
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.label = label;
-        this.completed= false;
-    }
+        if (title != null && description != null && dueDate !=null && label != null) {
+            this.priority = priority;
+            this.title = title;
+            this.description = description;
+            this.dueDate = dueDate;
+            this.label = label;
+        } else if (dueDate == null){
+            this.priority = priority;
+            this.title = title;
+            this.description = description;
+            this.dueDate = LocalDate.now().plusDays(7);
+            this.label = label;
+        } else {
+            this.priority=1;
+            this.title = "empty";
+            this.description= "nada";
+            this.label= "";
+            this.dueDate= LocalDate.now().plusWeeks(1);
+        }
 
-    public Task(int priority, String title, String description, String label) {
-        this.priority = priority;
-        this.title = title;
-        this.description = description;
-        //this.dueDate = defaultDueDate();
-        this.label = label;
         this.completed= false;
-        dueDate = LocalDate.now().plusWeeks(1);
-    }
-
-    //Empty Constructor
-    public Task(){
-        priority= 0;
-        title = "empty";
-        description= "nada";
-        label= "";
-        dueDate= LocalDate.now().plusWeeks(1);
     }
 
     //Define getters and setters

@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ToDoList.iml" filepath="$PROJECT_DIR$/.idea/ToDoList.iml" group="ToDoList" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/The code.ToDoList.app.test.iml" filepath="$PROJECT_DIR$/.idea/modules/app/The code.ToDoList.app.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ToDoList.iml" filepath="$PROJECT_DIR$/.idea/ToDoList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ToDoList.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ToDoList.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ToDoList.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ToDoList.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ToDoList.app.test.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ToDoList.app.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="ToDoList/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app_main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app_main.iml" group="ToDoList/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app_test.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app_test.iml" group="ToDoList/app" />
     </modules>
   </component>
 </project>
