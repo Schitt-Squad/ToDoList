@@ -103,7 +103,7 @@ public class MainUserState extends UIState{
             hBoxOne.setAlignment(Pos.BOTTOM_CENTER);
 
             //Set the Scene
-            currentScene = new Scene(hBoxOne, 850, 600);
+            currentScene = new Scene(hBoxOne, 900, 600);
             mainUser.setTitle("Welcome, " + sys.getUserList().get(sys.getCurrentUser()).getFirstName());
             mainUser.setScene(currentScene);
             mainUser.show();

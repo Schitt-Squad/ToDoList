@@ -17,7 +17,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
 
     //Code Licence
-    id "com.github.hierynomus.license" version "0.15.0"
+    //id "com.github.hierynomus.license" version "0.15.0"
 
     //Code Coverage
     id 'jacoco'
@@ -91,6 +91,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "todolist"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 application {
