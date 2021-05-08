@@ -19,7 +19,7 @@ public class TaskList implements Cloneable, Serializable {
     private String Description;
     private ArrayList<Task> taskList= new ArrayList<Task>();
 
-    //for both being set
+    //handles nulls when constructing
     public TaskList(String title, String desc){
         if (title != null && desc !=null) {
             Title = title;

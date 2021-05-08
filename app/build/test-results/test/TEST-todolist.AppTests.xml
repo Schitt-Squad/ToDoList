@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="todolist.AppTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-04-24T22:44:06" hostname="DESKTOP-KM1438T" time="0.03">
+<testsuite name="todolist.AppTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-08T02:55:38" hostname="LAPTOP-6AL2K5A9" time="0.012">
   <properties/>
-  <testcase name="Retrieve Blank Tasks" classname="todolist.AppTests" time="0.03"/>
+  <testcase name="Null List Handling" classname="todolist.AppTests" time="0.012"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -42,6 +42,19 @@ class AppTests extends Specification {
         test.get(0).getList(0).getTitle()=="projects"
 
     }
+    def "Null Task Handling"(){
+        setup:
+        Task task= new Task(1, null, null, null, null)
+        expect:
+        task.getTitle()=="empty"
+    }
+
+    def "Null List Handling"(){
+        setup:
+        TaskList list= new TaskList(null, null);
+        expect:
+        list.getTitle()=="Blank"
+    }
 
 
 
