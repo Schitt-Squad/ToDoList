@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="todolist.AppTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-05-08T02:36:11" hostname="LAPTOP-2VR6PJ6B" time="0.25">
   <properties/>
   <testcase name="Read In Users" classname="todolist.AppTests" time="0.192"/>
   <testcase name="Login Test" classname="todolist.AppTests" time="0.003"/>
   <testcase name="New List Test" classname="todolist.AppTests" time="0.017"/>
   <testcase name="Save List Test" classname="todolist.AppTests" time="0.036"/>
+=======
+<testsuite name="todolist.AppTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-08T02:55:38" hostname="LAPTOP-6AL2K5A9" time="0.012">
+  <properties/>
+  <testcase name="Null List Handling" classname="todolist.AppTests" time="0.012"/>
+>>>>>>> bdd77402c432e11480536b693a84e8ba0ad92558
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

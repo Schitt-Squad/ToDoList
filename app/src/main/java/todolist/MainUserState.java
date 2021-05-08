@@ -33,6 +33,7 @@ public class MainUserState extends UIState{
     ListView<String> listsV = new ListView<String>();
     TableView tasksV = new TableView();
     public static Stage mainUser= new Stage();
+    private CheckBox completedTasks;
 
     public static MainUserState instance(){
         if (singleton== null){
@@ -85,6 +86,8 @@ public class MainUserState extends UIState{
             Button logOut = new Button("Logout");
             Button userProfile = new Button("View User Profile");
 
+            completedTasks= new CheckBox("Show Completed Tasks");
+
             //Alignment
             VBox vBoxOne = new VBox(lists, listsV, logOut, userProfile);
             vBoxOne.setAlignment(Pos.CENTER_LEFT);
@@ -92,7 +95,7 @@ public class MainUserState extends UIState{
             VBox vBoxListButtons= new VBox(createList, deleteList, renameList, editList, duplicateList);
             vBoxListButtons.setAlignment(Pos.CENTER);
             vBoxListButtons.setSpacing(20);
-            VBox vBoxTwo = new VBox(tasks, tasksV);
+            VBox vBoxTwo = new VBox(completedTasks, tasks, tasksV);
             vBoxTwo.setAlignment(Pos.CENTER_LEFT);
             vBoxTwo.setSpacing(10);
             VBox vBoxTasksButtons = new VBox(createTask, deleteTask, duplicateTask, moveTask, viewTask);
@@ -181,6 +184,11 @@ public class MainUserState extends UIState{
                 } catch (CloneNotSupportedException e) {
                     e.printStackTrace();
                 }
+                RefreshTasks();
+            });
+
+            completedTasks.setOnMouseClicked(event -> {
+                RefreshTasks();
             });
 
         /**
@@ -313,6 +321,7 @@ public class MainUserState extends UIState{
             priorityChoice.getItems().add(3);
             priorityChoice.getItems().add(4);
             priorityChoice.getItems().add(5);
+            priorityChoice.setValue(1);
 
             //Buttons
             Button create = new Button("Create Task");
@@ -445,10 +454,20 @@ public class MainUserState extends UIState{
         public void RefreshTasks(){
             tasksV.getItems().clear();
             TaskList currentList=sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
+            if (completedTasks.isSelected()) {
+                if (currentList.size() > 0) {
+                    for (int i = 0; i < currentList.size(); i++) {
+                            tasksV.getItems().add(currentList.getTask(i));
 
-            if (currentList.size()>0) {
-                for (int i = 0; i < currentList.size(); i++) {
-                    tasksV.getItems().add(currentList.getTask(i));
+                    }
+                }
+            } else {
+                if (currentList.size() > 0) {
+                    for (int i = 0; i < currentList.size(); i++) {
+                        if (currentList.getTask(i).isCompleted()== false) {
+                            tasksV.getItems().add(currentList.getTask(i));
+                        }
+                    }
                 }
             }
 

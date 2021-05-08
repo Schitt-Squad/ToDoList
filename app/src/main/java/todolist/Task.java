@@ -34,7 +34,7 @@ public class Task implements Cloneable {
             this.description = description;
             this.dueDate = dueDate;
             this.label = label;
-        } else if (dueDate == null){
+        } else if (title != null && description != null && dueDate ==null && label != null){
             this.priority = priority;
             this.title = title;
             this.description = description;
@@ -100,5 +100,9 @@ public class Task implements Cloneable {
     }
 
     public void markComplete(){completed=true;}
+
+    public boolean isCompleted(){
+        return completed;
+    }
 
 }
