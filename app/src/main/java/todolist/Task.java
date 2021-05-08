@@ -96,18 +96,6 @@ public class Task implements Cloneable {
         this.label = label;
     }
 
-    //Define default Due Date for Task
-
-    /**
-     *
-     * @return Calendar object representing due date for a task
-     */
-    //public Calendar defaultDueDate(){
-    //    Calendar c= Calendar.getInstance();
-    //    c.add(Calendar.DATE, 7);
-    //    return c;
-    //}
-
     //for duplication
     public Task clone() throws CloneNotSupportedException{
         Task clone= (Task)super.clone();

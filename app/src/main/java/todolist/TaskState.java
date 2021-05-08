@@ -69,7 +69,7 @@ public class TaskState extends UIState {
             taskStage.close();
         });
 
-        //Need to add code to add task to a list
+        //Button action for creating task
         create.setOnMouseClicked(event -> {
             //Use this for getting value from DatePicker
             LocalDate value = dueDate.getValue();

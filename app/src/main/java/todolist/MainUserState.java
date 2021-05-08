@@ -27,7 +27,7 @@ import java.util.List;
  */
 
 public class MainUserState extends UIState{
-
+    //Instance Variables
     private static MainUserState singleton;
     private FileManager fileMang= new FileManager();
     ListView<String> listsV = new ListView<String>();
@@ -82,9 +82,10 @@ public class MainUserState extends UIState{
             Button moveTask = new Button("Move Task");
             Button viewTask = new Button("ViewTask");
             Button logOut = new Button("Logout");
+            Button userProfile = new Button("View User Profile");
 
-            //all for proper alignment, the first HBox is meant for the search items
-            VBox vBoxOne = new VBox(lists, listsV, logOut);
+            //Alignment
+            VBox vBoxOne = new VBox(lists, listsV, logOut, userProfile);
             vBoxOne.setAlignment(Pos.CENTER_LEFT);
             vBoxOne.setSpacing(20);
             VBox vBoxListButtons= new VBox(createList, deleteList, renameList, duplicateList);
@@ -100,7 +101,9 @@ public class MainUserState extends UIState{
             hBoxOne.setSpacing(50);
             hBoxOne.setAlignment(Pos.BOTTOM_CENTER);
 
+            //Set the Scene
             currentScene = new Scene(hBoxOne, 850, 600);
+            mainUser.setTitle("Welcome, " + sys.getUserList().get(sys.getCurrentUser()).getFirstName());
             mainUser.setScene(currentScene);
             mainUser.show();
 
@@ -120,7 +123,6 @@ public class MainUserState extends UIState{
 
                 sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).removeTask(remove);
 
-                //tasksV.getItems().clear();
                 Save();
                 RefreshTasks();
             });
@@ -149,6 +151,12 @@ public class MainUserState extends UIState{
                 mainStage.show();
             });
 
+            //Button action for View Profile
+            userProfile.setOnMouseClicked(event -> {
+                viewUser();
+            });
+
+            //Button action for duplicate list
             duplicateList.setOnMouseClicked(event -> {
                 TaskList orig= sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
                 try {
@@ -160,6 +168,7 @@ public class MainUserState extends UIState{
                 Save();
             });
 
+            //Button action for duplicate task
             duplicateTask.setOnMouseClicked(event -> {
                 Task orig = sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex()).getTask(tasksV.getSelectionModel().getSelectedIndex());
                 try {
@@ -176,17 +185,18 @@ public class MainUserState extends UIState{
             RefreshTasks();
             });
 
+        //Button action for renaming lists
          renameList.setOnMouseClicked(event -> {
              RenameList();
          });
         }
+
         @Override
         public Stage getStage(){
         return mainUser;
         }
 
-        //going to use this for Lists and create a separate method for tasks
-
+        //Method that sets the stage for creating a new list
         @Override
         public void createItem () {
             Stage second = new Stage();
@@ -248,6 +258,7 @@ public class MainUserState extends UIState{
 
         }
 
+        //Method informing user if Item was created successfully
         @Override
         public void makePopUp () {
             Stage second = new Stage();
@@ -377,6 +388,8 @@ public class MainUserState extends UIState{
         });
 
         }
+
+        //Method for refreshing lists. That way User does not have to click on list again to refresh.
         public void RefreshLists(){
             ObservableList<String> listNames = FXCollections.observableArrayList();
             for (int i = 0; i < sys.getUserList().get(sys.getCurrentUser()).getListArraySize(); i++) {
@@ -385,6 +398,7 @@ public class MainUserState extends UIState{
             listsV.setItems(listNames);
         }
 
+        //Method for refreshing tasks. That way User does not have to click on list again to refresh.
         public void RefreshTasks(){
             tasksV.getItems().clear();
             TaskList currentList=sys.getUserList().get(sys.getCurrentUser()).getList(listsV.getSelectionModel().getSelectedIndex());
@@ -396,6 +410,7 @@ public class MainUserState extends UIState{
             }
 
         }
+
         //saves to the file
         public void Save(){
             try {
@@ -491,6 +506,67 @@ public class MainUserState extends UIState{
             viewStage.setScene(taskScene);
             viewStage.show();
 
+        }
+
+        public void viewUser(){
+            //Set stage
+            Stage viewUser = new Stage();
+
+            //Labels
+            Label username = new Label("Username:");
+            Label password = new Label("Password:");
+            Label email = new Label("Email: ");
+            Label fName = new Label("First Name: ");
+            Label lName = new Label("Last Name: ");
+            Label bio = new Label("Biography: ");
+
+            User viewed = sys.getUserList().get(sys.getCurrentUser());
+
+            //TextFields
+            TextField userT = new TextField(viewed.getUserName());
+            userT.setEditable(false);
+            userT.setMaxSize(150, 60);
+
+            TextField passT = new TextField(viewed.getPassword());
+            passT.setEditable(false);
+            passT.setMaxSize(150, 60);
+
+            TextField mailT = new TextField(viewed.getEmailAddress());
+            mailT.setEditable(false);
+            mailT.setMaxSize(150, 60);
+
+            TextField fNameT = new TextField(viewed.getFirstName());
+            fNameT.setEditable(false);
+            fNameT.setMaxSize(150, 60);
+
+            TextField lNameT = new TextField(viewed.getLastName());
+            lNameT.setEditable(false);
+            lNameT.setMaxSize(150, 60);
+
+            TextArea bioT = new TextArea(viewed.getShortBio());
+            bioT.setEditable(false);
+            bioT.setWrapText(true);
+            bioT.setMaxSize(300, 200);
+
+            //Buttons
+            Button close = new Button("Close");
+
+            close.setOnMouseClicked(event -> {
+                viewUser.close();
+            });
+
+            //Alignment
+            HBox hBox= new HBox(close);
+            hBox.setAlignment(Pos.BOTTOM_RIGHT);
+            hBox.setSpacing(20);
+            VBox newUserBox= new VBox(fName, fNameT, lName, lNameT, username, userT, password, passT, email, mailT, bio, bioT, hBox);
+            newUserBox.setAlignment(Pos.CENTER_LEFT);
+            newUserBox.setSpacing(10);
+            Scene newUserScene= new Scene(newUserBox, 500, 600);
+
+            viewUser.setTitle("View Profile");
+            viewUser.setScene(newUserScene);
+            viewUser.show();
         }
 
 
