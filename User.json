@@ -1,0 +1,61 @@
+[
+  {
+    "ID": 1,
+    "firstName": "Generic",
+    "lastName": "Guy",
+    "shortBio": "stuff",
+    "emailAddress": "stuff@stuff.com",
+    "password": "hello",
+    "userName": "test",
+    "lists": [
+      {
+        "Title": "project",
+        "Description": "whatever",
+        "taskList": [
+          {
+            "priority": 2,
+            "title": "heyo",
+            "description": "heyo",
+            "dueDate": {
+              "year": 2021,
+              "month": 5,
+              "day": 12
+            },
+            "label": "heyo",
+            "completed": true
+          },
+          {
+            "priority": 4,
+            "title": "Homework",
+            "description": "Do the homework.",
+            "dueDate": {
+              "year": 2021,
+              "month": 5,
+              "day": 7
+            },
+            "label": "HW",
+            "completed": false
+          }
+        ]
+      },
+      {
+        "Title": "hello",
+        "Description": "helllooooo",
+        "taskList": [
+          {
+            "priority": 4,
+            "title": "by",
+            "description": "by",
+            "dueDate": {
+              "year": 2021,
+              "month": 5,
+              "day": 11
+            },
+            "label": "by",
+            "completed": true
+          }
+        ]
+      }
+    ]
+  }
+]

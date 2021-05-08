@@ -1,0 +1,38 @@
+[
+  {
+    "ID": 1,
+    "firstName": "Foo",
+    "lastName": "Bar",
+    "shortBio": "stuff",
+    "emailAddress": "stuff@stuff.com",
+    "password": "tester",
+    "userName": "test",
+    "lists": [
+      {
+        "Title": "projects",
+        "Description": "stuff",
+        "taskList": []
+      },
+      {
+        "Title": "projects",
+        "Description": "stuff",
+        "taskList": []
+      },
+      {
+        "Title": "projects",
+        "Description": "stuff",
+        "taskList": []
+      }
+    ]
+  },
+  {
+    "ID": 2,
+    "firstName": "Generic",
+    "lastName": "Guy",
+    "shortBio": "",
+    "emailAddress": "",
+    "password": "face",
+    "userName": "generic",
+    "lists": []
+  }
+]

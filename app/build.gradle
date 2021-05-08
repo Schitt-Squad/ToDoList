@@ -17,7 +17,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.9'
 
     //Code Licence
-    id "com.github.hierynomus.license" version "0.15.0"
+    //id "com.github.hierynomus.license" version "0.15.0"
 
     //Code Coverage
     id 'jacoco'
@@ -70,25 +70,17 @@ repositories {
 }
 
 dependencies {
-    /*
+
     // Use the latest Groovy version for Spock testing
     testImplementation 'org.codehaus.groovy:groovy-all:3.0.6'
 
     // Use the awesome Spock testing and specification framework even with Java
     testImplementation 'org.spockframework:spock-core:2.0-M4-groovy-3.0'
-    testImplementation 'junit:junit:4.13'
+    //testImplementation 'junit:junit:4.13'
 
     //Use JUnit test framework
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.5.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.5.2"
     testRuntime "org.junit.platform:junit-platform-runner:1.5.2"
-     */
-
-    //Spock
-    testCompile(
-            'junit:junit:4.12',
-            'org.codehaus.groovy:groovy-all:2.4.4',
-            'org.spockframework:spock-core:1.0-groovy-2.4'
-    )
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
@@ -101,6 +93,16 @@ test {
     useJUnitPlatform()
 }
 
+jar {
+    manifest {
+        attributes "Main-Class": "todolist"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 application {
     // Define the main class for the application.
     mainClass = 'todolist.App'
@@ -108,6 +110,7 @@ application {
 
 javafx {
     version = "16"
-    modules = [ 'javafx.controls' ]
+    modules = [ 'javafx.controls', 'javafx.graphics' ]
+
 }
 

@@ -23,10 +23,9 @@ public class LoginState extends UIState {
     private LoginState() {
 
 
-
         //initializing system
         super();
-        sys.getUserList().add(new User(1, "Generic", "Guy", "Test", "Tester"));
+        mainStage= new Stage();
         //laying out login screen
         Label loginLabel= new Label("LOGIN");
         loginLabel.setFont(Font.font(24));
@@ -38,7 +37,7 @@ public class LoginState extends UIState {
         passLabel.setFont(Font.font(16));
 
         TextField userText= new TextField();
-        TextField passText= new TextField();
+        PasswordField passText= new PasswordField();
 
         Button loginButt= new Button();
         loginButt.setText("Login");
@@ -57,7 +56,6 @@ public class LoginState extends UIState {
 
         //setting the scene and showing it.
         currentScene= new Scene(loginTwo, 500, 500);
-        mainStage= new Stage();
         mainStage.setTitle("Login");
         mainStage.setScene(currentScene);
 
@@ -66,7 +64,8 @@ public class LoginState extends UIState {
             if (sys.login(userText.getText(), passText.getText()))
             {
                 mainStage.close();
-               App.currentState=MainUserState.instance();
+               Stage mainUser= MainUserState.instance().getStage();
+               mainUser.show();
 
             }else {
                 this.makePopUp();
@@ -92,6 +91,9 @@ public class LoginState extends UIState {
         return singleton;
     }
 
+    public Scene getScene(){
+        return currentScene;
+    }
 
     //for creating a user
     @Override
@@ -125,6 +127,8 @@ public class LoginState extends UIState {
         Label bio= new Label("Biography: ");
         TextField bioT= new TextField();
         bioT.setMinSize(400, 300);
+        bioT.setAlignment(Pos.TOP_LEFT);
+        bioT.setMinSize(300, 200);
 
         Button cancel= new Button("Cancel");
         Button create= new Button("Create");
@@ -135,7 +139,7 @@ public class LoginState extends UIState {
         VBox newUserBox= new VBox(fName, fNameT, lName, lNameT, username, userT, password, passT, email, mailT, bio, bioT, hBox);
         newUserBox.setAlignment(Pos.CENTER_LEFT);
         newUserBox.setSpacing(10);
-        Scene newUserScene= new Scene(newUserBox, 500, 700);
+        Scene newUserScene= new Scene(newUserBox, 500, 600);
 
         newUserStage.setTitle("Create New User");
         newUserStage.setScene(newUserScene);
@@ -145,14 +149,14 @@ public class LoginState extends UIState {
         create.setOnMouseClicked(event -> {
             if (fNameT.getText() != null && lNameT.getText() != null && userT.getText() != null && passT.getText() != null) {
                 sys.newUser(fNameT.getText(), lNameT.getText(), bioT.getText(), mailT.getText(), passT.getText(), userT.getText());
-                /*
+
                 try {
-                    fileManager.writeFile("C:\\Users\\Braxton\\Desktop\\Git School repos\\Semester Project CS2263\\ToDoList\\User.json", sys.getUserList());
+                    fileManager.writeUser("./User.json", sys.getUserList());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                for saving to the file
-                 */
+                //for saving to the file
+
                 newUserStage.close();
 
             } else{

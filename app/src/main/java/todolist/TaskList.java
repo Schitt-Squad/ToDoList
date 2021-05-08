@@ -8,8 +8,10 @@ package todolist;
  */
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class TaskList implements Cloneable, Serializable {
     //local variables, need to add an array list of tasks
@@ -17,22 +19,20 @@ public class TaskList implements Cloneable, Serializable {
     private String Description;
     private ArrayList<Task> taskList= new ArrayList<Task>();
 
-    //for both being set
+    //handles nulls when constructing
     public TaskList(String title, String desc){
-        Title=title;
-        Description=desc;
+        if (title != null && desc !=null) {
+            Title = title;
+            Description = desc;
+        }else if (desc == null && title != null) {
+            Title=title;
+            Description=" ";
+        }else {
+            Title= "Blank";
+            Description= " ";
+        }
     }
 
-    //when they just want a title to the list
-    public TaskList(String title){
-        Title=title;
-    }
-
-    //creates a blank list
-    public TaskList(){
-        Title= " ";
-        Description= " ";
-    }
 
     //Getters and Setters
     public String getTitle() {
@@ -51,15 +51,9 @@ public class TaskList implements Cloneable, Serializable {
         Description = description;
     }
 
-    //make a new task and add it to the list
-    public void makeNewTask(int priority, String title, String desc, Calendar date, String label){
-        Task t;
-        if (date== null){
-            t= new Task(priority, title, desc, label);
-        } else {
-            t= new Task(priority, title, desc, date, label);
-        }
-        taskList.add(t);
+    //need this method for cloning
+    public void cloneTask(Task task){
+        taskList.add(task);
     }
 
     //moves a task from one list to another
@@ -68,17 +62,11 @@ public class TaskList implements Cloneable, Serializable {
         this.removeTask(task);
     }
 
-    //Allows user to duplicate a task
-    //Return type and parameters need to be changed
-    public void duplicateTask(Task orig) throws CloneNotSupportedException{
-        Task newTask= orig.clone();
-        newTask.setLabel(newTask.getTitle() + " Copy");
-        taskList.add(newTask);
-    }
-
     //for duplication
     public TaskList clone() throws CloneNotSupportedException {
-        return (TaskList)super.clone();
+        TaskList clone= (TaskList)super.clone();
+        clone.setTitle(clone.getTitle()+ " (Copy)");
+        return clone;
     }
 
     //for moving tasks

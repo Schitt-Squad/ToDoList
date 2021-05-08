@@ -21,7 +21,7 @@ public class FileManager {
     //Empty constructor
     public FileManager() {}
 
-    public void writeFile(String file, ArrayList<User> users) throws IOException {
+    public void writeUser(String file, ArrayList<User> users) throws IOException {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
@@ -36,7 +36,7 @@ public class FileManager {
         writer.close();
     }
 
-    public ArrayList<User> readFile(String file) throws IOException {
+    public ArrayList<User> readUser(String file) throws IOException {
         Gson gson = new Gson();
         ArrayList<User> other;
 
@@ -44,7 +44,7 @@ public class FileManager {
         Reader reader = Files.newBufferedReader(Paths.get(file));
 
         //Create type for ArrayList
-        Type arrayList = new TypeToken<ArrayList<UserList>>() {}.getType();
+        Type arrayList = new TypeToken<ArrayList<User>>(){}.getType();
 
         //Bring in file
         other = gson.fromJson(reader, arrayList);

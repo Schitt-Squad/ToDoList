@@ -11,63 +11,77 @@ public class ToDoListSys {
     //I don't think there needs to be anything more here
     private UserList UserL = UserList.instance();
     private Admin admin = Admin.instance();
-    private User currentUser;
+    private int currentUser;
     private static ToDoListSys singleton;
     private FileManager fileManager= new FileManager();
+    private int idCounter;
 
     //making it a singleton
-    private ToDoListSys() {
-        /*
-        try {
-            UserL.setUserList(fileManager.readFile("C:\\Users\\Braxton\\Desktop\\Git School repos\\Semester Project CS2263\\ToDoList\\User.json"));
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
+        //pulls in User ArrayList to be dropped into the main UserList
+        private ToDoListSys(String file) {
+            ArrayList<User> temp;
+
+            try {
+                temp =fileManager.readUser(file);
+                UserL.setUserList(temp);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            idCounter= UserL.size();
+
+            //for pulling from the file upon start up
+
+
         }
-        for pulling from the file upon start up
+
+        //Singleton Instance
+        public static ToDoListSys instance(String file) {
+            if(singleton == null)
+                singleton = new ToDoListSys(file);
+            return singleton;
+        }
+
+        /**
+         *
+         * @param username  username of user attempting to login
+         * @param password  password of user attempting to login
+         * @return          will return true if credentials of user are verified
          */
-
-    }
-
-    //Singleton Instance
-    public static ToDoListSys instance() {
-        if(singleton == null)
-            singleton = new ToDoListSys();
-        return singleton;
-    }
-
-    /**
-     *
-     * @param username  username of user attempting to login
-     * @param password  password of user attempting to login
-     * @return          will return true if credentials of user are verified
-     */
-    public boolean login(String username,  String password) {
-        User user;
-        for (int u= 1; u<UserL.size(); u++){
-           user =  UserL.getUser(u);
-           if (user.getUserName().equals(username)){
-               if (user.getPassword().equals(password)){
-                   currentUser= user;
-                   return true;
-               }
-           }
+        public boolean login(String username,  String password) {
+            User user;
+            for (int u= 0; u<UserL.size(); u++){
+                user =  UserL.getUser(u);
+                if (user.getUserName().equals(username)){
+                    if (user.getPassword().equals(password)){
+                        currentUser= u;
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
-        return false;
-    }
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
+        public int getCurrentUser() {
+            return currentUser;
+        }
 
-    //Review this method
-    public void logout(User user){
-        currentUser = null;
-    }
+        //Review this method
+        public void logout(){
+            try {
+                fileManager.writeUser("./User.json", UserL.getUserList());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //for saving to the file
+            currentUser = -1;
+        }
 
-    public void newUser(String fName, String lName, String bio, String email, String pass, String user){
-        UserL.addUser(fName, lName, bio, email, pass, user);
+        public void newUser(String fName, String lName, String bio, String email, String pass, String user){
+            UserL.addUser(idCounter+1, fName, lName, bio, email, pass, user);
+        }
+        public ArrayList<User> getUserList(){
+            return UserL.getUserList();
+        }
     }
-    public ArrayList<User> getUserList(){
-        return UserL.getUserList();
-    }
-}

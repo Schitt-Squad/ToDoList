@@ -7,17 +7,17 @@ package todolist;
  * @author Braxton Grover
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserList {
+public class UserList implements Serializable {
     //local variables needs to add admin
     private ArrayList<User> userList= new ArrayList<User>();
     private static UserList singleton;
-    private int idCounter;
 
     //need to set ID Counter for giving users unique IDs
     private UserList(){
-        idCounter=1;
+
     }
 
     //instantiate userlist as a singleton
@@ -28,9 +28,8 @@ public class UserList {
         return singleton;
     }
 
-    //add a new user, is a boolean for checking fields were properly filled out.
-
     /**
+     * Method for adding user
      *
      * @param fName first name of user being added to list
      * @param lName last name
@@ -40,17 +39,16 @@ public class UserList {
      * @param user  username
      * @return      will return true if user is successfully added to UserList
      */
-    public boolean addUser(String fName, String lName, String bio, String email, String pass, String user){
+    public boolean addUser(int id, String fName, String lName, String bio, String email, String pass, String user){
         if(bio != null && email != null) {
-            User newUser = new User(idCounter, fName, lName, bio, email, pass, user);
+            User newUser = new User(id, fName, lName, bio, email, pass, user);
             userList.add(newUser);
-            idCounter++;
+
             return true;
 
         } else if(bio == null && email == null){
-            User newUser = new User(idCounter, fName, lName, pass, user);
+            User newUser = new User(id, fName, lName, pass, user);
             userList.add(newUser);
-            idCounter++;
             return true;
 
         } else {
@@ -101,5 +99,4 @@ public class UserList {
         userList= users;
 
     }
-    public int getIdCounter() { return idCounter; }
 }
